@@ -4,6 +4,10 @@ Curso sobre desarrollo android , aquí incluiré todo lo relevante del curso dic
 además de todos los códigos que realice.
 
 
+## Documentacion Oficial
+
+https://developer.android.com/guide/index.html
+
 
 ## Clase 1 - Carácterísticas Generales
 
@@ -80,3 +84,12 @@ usualmente dentro del fragmento puedo ser un "getActivity" y dentro de la activi
 existe un plugin en androidEstudio llamado "butterknife-zelezny" que permite crear estas "inyecciones" de forma automática
 
 
+instalar butterknife
+
+
+simplemente ve a la pestaña File desde AndroidStudio, seleccionas de la lista donde dice Settings, te aparece una nueva ventana te ubicas en el listado de la parte izquierda donde dice Pluggins. Si te fijas en la parte de abajo te aparecerán tres botones selecciona el que dice Browse repositories.., luego en el buscador escribes Android ButterKnife Zelezny en la parte derecha te da una opción para instalar, lo instalas y luego te pide que reinicies el programa ya con eso lo tienes instalado.
+
+
+## Configurar Genymotion
+
+http://aegis.pe/como-configurar-genymotion-con-android-studio
