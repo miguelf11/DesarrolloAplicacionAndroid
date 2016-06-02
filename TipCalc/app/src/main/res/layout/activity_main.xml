@@ -17,5 +17,4 @@
         android:id = "@+id/tipContent"
         layout="@layout/content_tip"/>
 
-
 </RelativeLayout>
