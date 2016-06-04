@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.galileo.android.tipcalc.MainActivity">
+    tools:context=".activities.MainActivity">
 
     <!-- match_parent ocupa el espacio disponible -->
     <!-- wrap_content ocupa el espacio necesario -->
@@ -16,5 +16,15 @@
         android:layout_height="wrap_content"
         android:id = "@+id/tipContent"
         layout="@layout/content_tip"/>
+    
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragmentList"
+        android:layout_below="@id/tipContent"
+        android:name="edu.galileo.android.tipcalc.fragments.TipHistoryListFragment"
+        tools:layout="@layout/fragment_tip_history_list" />
+
+
 
 </RelativeLayout>
