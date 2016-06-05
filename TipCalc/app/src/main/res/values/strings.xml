@@ -10,8 +10,6 @@
     <string name="main.menu.action.about">Acerca de</string>
 
     <string name="global.message.tip">Propina %,.1f</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tipdetail.message.bill">TOTAL %,.1f</string>
 
 </resources>
