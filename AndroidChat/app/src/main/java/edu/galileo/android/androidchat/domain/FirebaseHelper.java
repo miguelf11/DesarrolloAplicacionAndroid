@@ -1,4 +1,4 @@
-package edu.galileo.android.androidchat;
+package edu.galileo.android.androidchat.domain;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
