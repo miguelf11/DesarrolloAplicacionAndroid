@@ -39,6 +39,7 @@ dependencies {
     AS recomienda no usar ese +  */
     compile 'com.firebase:firebase-client-android:2.5.0'
     compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'de.greenrobot:eventbus:2.4.0'
 
 
 
