@@ -38,6 +38,9 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        loginPresenter = new LoginPresenterImpl(this);
+        loginPresenter.checkForAunthenticatedUser();
     }
 
     @OnClick(R.id.btnSignin)
@@ -104,7 +107,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
-    public void NewUserEror(String error) {
+    public void NewUserError(String error) {
         inputPassword.setText("");
         String msgError = String.format(getString(R.string.login_error_message_signup),error);
         inputPassword.setError(msgError);

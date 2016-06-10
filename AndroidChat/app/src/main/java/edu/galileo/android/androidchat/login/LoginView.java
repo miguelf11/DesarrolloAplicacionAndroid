@@ -16,6 +16,6 @@ public interface LoginView {
     void loginError(String error);
 
     void newUserSuccess();
-    void NewUserEror(String error);
+    void NewUserError(String error);
 
 }
