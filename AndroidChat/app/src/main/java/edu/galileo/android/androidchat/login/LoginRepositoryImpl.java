@@ -106,6 +106,7 @@ public class LoginRepositoryImpl implements LoginRepository {
         String email = helper.getAuthUserEmail();
         if(email != null) {
             User currentUser = new User();
+            currentUser.setEmail(email);
             myUserReference.setValue(currentUser);
         }
     }
