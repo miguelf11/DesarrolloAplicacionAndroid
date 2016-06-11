@@ -2,12 +2,17 @@ package edu.galileo.android.androidchat.login;
 
 import android.util.Log;
 
+import com.firebase.client.AuthData;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import javax.security.auth.login.LoginException;
 
 import de.greenrobot.event.EventBus;
 import edu.galileo.android.androidchat.domain.FirebaseHelper;
+import edu.galileo.android.androidchat.entities.User;
 import edu.galileo.android.androidchat.lib.GreenRobotEventBus;
 import edu.galileo.android.androidchat.login.events.LoginEvent;
 
@@ -20,14 +25,52 @@ public class LoginRepositoryImpl implements LoginRepository {
         con firebase  */
 
     private FirebaseHelper helper;
+    private Firebase dataReference;
+    private Firebase myUserReference;
+
 
     public LoginRepositoryImpl() {
         this.helper = FirebaseHelper.getInstance();
+        this.dataReference = helper.getDataReference();
+        this.myUserReference = helper.getMyUserReference();
+
     }
 
     @Override
     public void signUp(String email, String password) {
-        postEvent(LoginEvent.onSignUpSuccess);
+        dataReference.authWithPassword(email, password, new Firebase.AuthResultHandler() {
+            @Override
+            public void onAuthenticated(AuthData authData) {
+                myUserReference = helper.getMyUserReference();
+                myUserReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        User currentUser = dataSnapshot.getValue(User.class);
+                        postEvent(LoginEvent.onSignInSuccess);
+
+                        if(currentUser == null){
+                            String email = helper.getAuthUserEmail();
+                            if(email != null){
+                                currentUser = new User();
+                                myUserReference.setValue(currentUser);
+                            }
+                        }
+                        helper.changeUserConnectionStatus(User.ONLINE);
+                        postEvent(LoginEvent.onSignInSuccess);
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {}
+                });
+
+            }
+
+            @Override
+            public void onAuthenticationError(FirebaseError firebaseError) {
+                postEvent(LoginEvent.onSignInError,firebaseError.getMessage());
+            }
+        });
+
     }
 
     @Override

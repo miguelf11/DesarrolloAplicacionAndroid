@@ -9,6 +9,8 @@ import com.firebase.client.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.galileo.android.androidchat.entities.User;
+
 /**
  * Created by Alex on 09-06-2016.
  */
@@ -25,6 +27,7 @@ public class FirebaseHelper {
 
     /* deberiamos tener una URL "diferente" ? */
     private final static String FIREBASE_URL = "https://android-chat-example.firebaseio.com";
+    //private final static String FIREBASE_URL = "https://intense-torch-6468.firebaseio.com";
 
     private static class SingletonHolder {
         private static final FirebaseHelper INSTANCE =  new FirebaseHelper();
@@ -110,7 +113,7 @@ public class FirebaseHelper {
     }
 
     public void signOff(){
-        notifyContactsOfConnectionChange(false,true);
+        notifyContactsOfConnectionChange(User.OFFLINE,true);
     }
 
     private void notifyContactsOfConnectionChange(final boolean online, final boolean signoff ) {
