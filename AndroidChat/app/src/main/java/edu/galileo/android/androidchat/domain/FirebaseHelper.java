@@ -26,8 +26,8 @@ public class FirebaseHelper {
     private final static String CONTACTS_PATH = "contacs";
 
     /* deberiamos tener una URL "diferente" ? */
-    private final static String FIREBASE_URL = "https://android-chat-example.firebaseio.com";
-    //private final static String FIREBASE_URL = "https://intense-torch-6468.firebaseio.com";
+    //private final static String FIREBASE_URL = "https://android-chat-example.firebaseio.com";
+    private final static String FIREBASE_URL = "https://intense-torch-6468.firebaseio.com";
 
     private static class SingletonHolder {
         private static final FirebaseHelper INSTANCE =  new FirebaseHelper();
@@ -63,7 +63,7 @@ public class FirebaseHelper {
         Firebase userReference = null;
         if (email != null){
             String emailKey = email.replace(".","_");
-            userReference = dataReference.getRoot().child(USERS_PATH).child(email);
+            userReference = dataReference.getRoot().child(USERS_PATH).child(emailKey);
         }
         return userReference;
     }

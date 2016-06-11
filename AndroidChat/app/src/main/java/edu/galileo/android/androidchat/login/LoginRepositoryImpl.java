@@ -38,6 +38,11 @@ public class LoginRepositoryImpl implements LoginRepository {
 
     @Override
     public void signUp(String email, String password) {
+        postEvent(LoginEvent.onSignInSuccess);
+    }
+
+    @Override
+    public void signIn(String email, String password) {
         dataReference.authWithPassword(email, password, new Firebase.AuthResultHandler() {
             @Override
             public void onAuthenticated(AuthData authData) {
@@ -46,7 +51,6 @@ public class LoginRepositoryImpl implements LoginRepository {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         User currentUser = dataSnapshot.getValue(User.class);
-                        postEvent(LoginEvent.onSignInSuccess);
 
                         if(currentUser == null){
                             String email = helper.getAuthUserEmail();
@@ -73,10 +77,7 @@ public class LoginRepositoryImpl implements LoginRepository {
 
     }
 
-    @Override
-    public void signIn(String email, String password) {
-        postEvent(LoginEvent.onSignInSuccess);
-    }
+
 
     @Override
     public void checkSession() {
