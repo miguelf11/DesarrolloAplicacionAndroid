@@ -34,5 +34,4 @@ ext{
     butterknifeVersion = '7.0.1'
     eventBusVersion = '3.0.0'
     glideVersion = '3.6.1'
-
 }
