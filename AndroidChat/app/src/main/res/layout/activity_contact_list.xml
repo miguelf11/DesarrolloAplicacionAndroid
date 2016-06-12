@@ -9,12 +9,12 @@
     tools:context=".contactlist.ContactListActivity">
 
 
-    <!-- app:theme="@style/Base.Theme.AppCompat.Light"   "@style/Base.Theme.AppCompat.Light-->
+    <!-- android:theme="@style/AppTheme.PopupOverlay" -->
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/appBarLayout"
-        app:theme="@style/Base.Theme.AppCompat.Light">
+        app:theme="@style/AppTheme.PopupOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
