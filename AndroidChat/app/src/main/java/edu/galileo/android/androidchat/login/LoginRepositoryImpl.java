@@ -12,7 +12,7 @@ import java.util.Map;
 
 import javax.security.auth.login.LoginException;
 
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
 import edu.galileo.android.androidchat.domain.FirebaseHelper;
 import edu.galileo.android.androidchat.entities.User;
 import edu.galileo.android.androidchat.lib.GreenRobotEventBus;
