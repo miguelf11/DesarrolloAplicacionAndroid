@@ -93,3 +93,6 @@ simplemente ve a la pestaña File desde AndroidStudio, seleccionas de la lista d
 ## Configurar Genymotion
 
 http://aegis.pe/como-configurar-genymotion-con-android-studio
+
+## Código de Android Chat (cambian algunas cosas)
+https://github.com/ykro/android-chat-firebase
