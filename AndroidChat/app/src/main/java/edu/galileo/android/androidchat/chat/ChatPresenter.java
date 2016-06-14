@@ -11,6 +11,7 @@ public interface ChatPresenter {
     void onCreate();
     void onDestroy();
 
+    void setChatRecipient(String recipient);
     void sendMessage(String msg);
     void onEventMainThread(ChatEvent event);
 
