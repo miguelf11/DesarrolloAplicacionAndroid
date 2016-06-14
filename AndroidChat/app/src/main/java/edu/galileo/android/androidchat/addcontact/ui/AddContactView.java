@@ -1,4 +1,4 @@
-package edu.galileo.android.androidchat.addcontact;
+package edu.galileo.android.androidchat.addcontact.ui;
 
 /**
  * Created by Alex on 14-06-2016.

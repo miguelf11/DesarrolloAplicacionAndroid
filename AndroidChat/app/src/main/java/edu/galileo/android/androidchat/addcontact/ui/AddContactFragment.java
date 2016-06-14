@@ -1,4 +1,4 @@
-package edu.galileo.android.androidchat.addcontact;
+package edu.galileo.android.androidchat.addcontact.ui;
 
 
 import android.os.Bundle;
