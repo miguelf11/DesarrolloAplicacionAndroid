@@ -23,7 +23,7 @@ public class FirebaseHelper {
     private final static String SEPARATOR = "___";
     private final static String CHAT_PATH = "chats";
     private  final static String USERS_PATH = "users";
-    private final static String CONTACTS_PATH = "contacs";
+    private final static String CONTACTS_PATH = "contacts";
 
     /* deberiamos tener una URL "diferente" ? */
     //private final static String FIREBASE_URL = "https://android-chat-example.firebaseio.com";

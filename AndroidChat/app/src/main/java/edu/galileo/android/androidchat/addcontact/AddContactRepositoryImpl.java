@@ -40,7 +40,7 @@ public class AddContactRepositoryImpl implements AddContactRepository {
                     currentUserKey = currentUserKey.replace(".","_");
 
                     Firebase reverseContactReference = helper.getContactsReference(email);
-                    reverseContactReference.child(currentUserKey).setValue(User.OFFLINE);
+                    reverseContactReference.child(currentUserKey).setValue(User.ONLINE);
 
                     postSuccess();
 
