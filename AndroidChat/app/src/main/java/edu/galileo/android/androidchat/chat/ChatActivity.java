@@ -3,6 +3,8 @@ package edu.galileo.android.androidchat.chat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import edu.galileo.android.androidchat.R;
+
 public class ChatActivity extends AppCompatActivity {
 
     @Override
