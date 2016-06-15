@@ -4,14 +4,12 @@ package edu.galileo.android.androidchat.addcontact.ui;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.preference.DialogPreference;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -19,6 +17,8 @@ import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.galileo.android.androidchat.R;
+import edu.galileo.android.androidchat.addcontact.AddContactPresenter;
+import edu.galileo.android.androidchat.addcontact.AddContactPresenterImpl;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,8 +31,10 @@ public class AddContactFragment extends DialogFragment implements AddContactView
     @Bind(R.id.progressBar)
     ProgressBar progressBar;
 
+    AddContactPresenter presenter;
+
     public AddContactFragment() {
-        // Required empty public constructor
+        presenter = new AddContactPresenterImpl(this);
     }
 
 
@@ -90,6 +92,7 @@ public class AddContactFragment extends DialogFragment implements AddContactView
     @Override
     public void contactAdded() {
         Toast.makeText(getActivity(),R.string.addcontact_message_contactadded,Toast.LENGTH_SHORT).show();
+        dismiss();
     }
 
     @Override
@@ -106,6 +109,34 @@ public class AddContactFragment extends DialogFragment implements AddContactView
 
     @Override
     public void onShow(DialogInterface dialog) {
+        final AlertDialog dialog1 = (AlertDialog)getDialog();
+        if(dialog1 != null){
+            Button positiveButton = dialog1.getButton(Dialog.BUTTON_POSITIVE);
+            Button negativeButton = dialog1.getButton(Dialog.BUTTON_NEGATIVE);
 
+            positiveButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    presenter.addContact(editTxtEmail.getText().toString());
+                }
+            });
+
+            negativeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dismiss();
+                }
+            });
+
+
+
+        }
+        presenter.onShow();
+    }
+
+    @Override
+    public void onDestroy() {
+        presenter.onDestroy();
+        super.onDestroy();
     }
 }
