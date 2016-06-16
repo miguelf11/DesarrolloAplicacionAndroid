@@ -15,7 +15,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import edu.galileo.android.androidchat.R;
-import edu.galileo.android.androidchat.chat.ChatAdapter;
+import edu.galileo.android.androidchat.chat.ui.adapters.ChatAdapter;
 import edu.galileo.android.androidchat.chat.ChatPresenter;
 import edu.galileo.android.androidchat.chat.ChatPresenterImpl;
 import edu.galileo.android.androidchat.domain.AvatarHelper;

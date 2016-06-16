@@ -1,4 +1,4 @@
-package edu.galileo.android.androidchat.chat;
+package edu.galileo.android.androidchat.chat.ui.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
