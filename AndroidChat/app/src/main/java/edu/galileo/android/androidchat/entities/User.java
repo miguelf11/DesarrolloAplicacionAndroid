@@ -44,8 +44,8 @@ public class User {
         boolean equal = false;
 
         if(obj instanceof User){
-            User recipe = (User)obj;
-            equal = this.email.equals(recipe.getEmail());
+            User user = (User)obj;
+            equal = this.email.equals(user.getEmail());
         }
         return equal;
     }
