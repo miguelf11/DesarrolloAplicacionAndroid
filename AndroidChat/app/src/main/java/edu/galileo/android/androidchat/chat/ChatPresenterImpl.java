@@ -1,6 +1,7 @@
 package edu.galileo.android.androidchat.chat;
 
 import edu.galileo.android.androidchat.chat.events.ChatEvent;
+import edu.galileo.android.androidchat.chat.ui.ChatView;
 
 /**
  * Created by Alex on 16-06-2016.

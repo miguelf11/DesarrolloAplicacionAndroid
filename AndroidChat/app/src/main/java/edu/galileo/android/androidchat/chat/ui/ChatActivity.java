@@ -1,4 +1,4 @@
-package edu.galileo.android.androidchat.chat;
+package edu.galileo.android.androidchat.chat.ui;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -15,6 +15,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import edu.galileo.android.androidchat.R;
+import edu.galileo.android.androidchat.chat.ChatAdapter;
+import edu.galileo.android.androidchat.chat.ChatPresenter;
+import edu.galileo.android.androidchat.chat.ChatPresenterImpl;
 import edu.galileo.android.androidchat.domain.AvatarHelper;
 import edu.galileo.android.androidchat.entities.ChatMessage;
 import edu.galileo.android.androidchat.lib.GlideImageLoader;

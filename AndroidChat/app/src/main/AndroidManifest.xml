@@ -25,7 +25,7 @@
             android:label="@string/contactlist.title"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".chat.ChatActivity"
+            android:name=".chat.ui.ChatActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
