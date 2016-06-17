@@ -10,7 +10,6 @@ import com.firebase.client.Firebase;
 public class AndroidChatApplication extends Application{
 
 
-
     @Override
     public void onCreate(){
         super.onCreate();

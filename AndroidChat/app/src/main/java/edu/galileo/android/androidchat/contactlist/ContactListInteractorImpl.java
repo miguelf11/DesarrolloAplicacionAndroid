@@ -19,7 +19,6 @@ public class ContactListInteractorImpl implements ContactListInteractor {
     @Override
     public void unsubscribe() {
         repository.unsubscribeToContactListEvents();
-
     }
 
     @Override
