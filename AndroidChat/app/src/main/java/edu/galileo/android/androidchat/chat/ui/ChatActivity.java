@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import edu.galileo.android.androidchat.R;
 import edu.galileo.android.androidchat.chat.ui.adapters.ChatAdapter;
@@ -39,8 +40,6 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
     RecyclerView messageRecyclerView;
     @Bind(R.id.editTxtMessage)
     EditText editTxtMessage;
-    @Bind(R.id.btnSendMessage)
-    ImageButton btnSendMessage;
 
     public final static String EMAIL_KEY = "email";
     public final static String ONLINE_KEY = "online";
@@ -85,6 +84,8 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
         ImageLoader imageLoader = new GlideImageLoader(getApplicationContext());
         imageLoader.load(imgAvatar, AvatarHelper.getAvatarUrl(recipient));
 
+        setSupportActionBar(toolbar);
+
     }
 
     @Override
@@ -114,4 +115,11 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
         messageRecyclerView.scrollToPosition(adapter.getItemCount()-1);
 
     }
+
+    @OnClick(R.id.btnSendMessage)
+    public void sendMessage(){
+        presenter.sendMessage(editTxtMessage.getText().toString());
+        editTxtMessage.setText("");
+    }
+
 }

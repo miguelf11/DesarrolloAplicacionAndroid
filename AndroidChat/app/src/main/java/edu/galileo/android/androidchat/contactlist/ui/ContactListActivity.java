@@ -2,7 +2,6 @@ package edu.galileo.android.androidchat.contactlist.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -33,8 +32,6 @@ public class ContactListActivity extends AppCompatActivity implements ContactLis
     Toolbar toolbar;
     @Bind(R.id.recyclerViewContacts)
     RecyclerView recyclerViewContacts;
-    @Bind(R.id.fab)
-    FloatingActionButton fab;
 
     private ContactListAdapter adapter;
     private ContactListPresenter presenter;
@@ -52,8 +49,6 @@ public class ContactListActivity extends AppCompatActivity implements ContactLis
         setUpToolbar();
 
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -74,14 +69,14 @@ public class ContactListActivity extends AppCompatActivity implements ContactLis
         return super.onOptionsItemSelected(item);
     }
 
+    private void setUpAdapter() {
+        ImageLoader imageLoader = new GlideImageLoader(this.getApplicationContext());
+        adapter = new ContactListAdapter(new ArrayList<User>(),imageLoader, this);
+    }
+
     private void setUpRecyclerView() {
         recyclerViewContacts.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewContacts.setAdapter(adapter);
-    }
-
-    private void setUpAdapter() {
-        ImageLoader loader = new GlideImageLoader(this.getApplicationContext());
-        adapter = new ContactListAdapter(new ArrayList<User>(), loader, this);
     }
 
     private void setUpToolbar() {

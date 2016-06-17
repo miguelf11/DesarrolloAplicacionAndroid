@@ -26,7 +26,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
     private ImageLoader imageLoader;
     private OnItemClickListener onItemClickListener;
 
-    public ContactListAdapter(List<User> contactList, ImageLoader imageLoading, OnItemClickListener onItemClickListener) {
+    public ContactListAdapter(List<User> contactList, ImageLoader imageLoader, OnItemClickListener onItemClickListener) {
         this.contactList = contactList;
         this.imageLoader = imageLoader;
         this.onItemClickListener = onItemClickListener;
