@@ -15,5 +15,5 @@ public class CustomTwitterApiClient extends TwitterApiClient {
         return getService(TimelineService.class);
     }
 
-    
+
 }
