@@ -34,11 +34,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "String", "TWITTER_KEY", project.property('TWITTER_KEY')
             buildConfigField "String", "TWITTER_SECRET", project.property('TWITTER_SECRET')
+            resValue "String","FABRIC_API_KEY",project.property('FABRIC_API_KEY')
         }
 
         debug {
             buildConfigField "String", "TWITTER_KEY", project.property('TWITTER_KEY')
             buildConfigField "String", "TWITTER_SECRET", project.property('TWITTER_SECRET')
+            resValue "String","FABRIC_API_KEY",project.property('FABRIC_API_KEY')
         }
     }
 }
