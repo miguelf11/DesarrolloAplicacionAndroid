@@ -7,7 +7,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:name=".TwitterClientApp"
+        android:theme="@style/AppTheme.NoActionBar">
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="5ed8eb6ca1c7bbdee643ab4fbd8bb437abdc4191" />
+
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -15,9 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="5ed8eb6ca1c7bbdee643ab4fbd8bb437abdc4191" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
