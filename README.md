@@ -96,3 +96,6 @@ http://aegis.pe/como-configurar-genymotion-con-android-studio
 
 ## Código de Android Chat (cambian algunas cosas)
 https://github.com/ykro/android-chat-firebase
+
+## Código de Twitter app hecho por el presentador
+https://github.com/ykro/android-twitter
