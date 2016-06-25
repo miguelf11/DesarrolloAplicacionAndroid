@@ -9,8 +9,8 @@ import edu.galileo.android.twitterclient.entities.Image;
  * Created by Alex on 24-06-2016.
  */
 public interface ImagesView {
-    void showElements();
-    void hidElements();
+    void showImages();
+    void hideImages();
     void showProgress();
     void hideProgress();
 
