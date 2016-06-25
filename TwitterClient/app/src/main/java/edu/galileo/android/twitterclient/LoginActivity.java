@@ -16,7 +16,7 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import edu.galileo.android.twitterclient.main.MainActivity;
+import edu.galileo.android.twitterclient.main.ui.MainActivity;
 import io.fabric.sdk.android.Fabric;
 
 public class LoginActivity extends AppCompatActivity {
@@ -65,7 +65,15 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void navigateToMainScreen() {
-        startActivity(new Intent(this, MainActivity.class));
+        Intent intent = new Intent(this, MainActivity.class);
+        /*
+            Estos flags evitan que el usuario al darle back regrese
+            al login.
+         */
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                | Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
 
     }
 
