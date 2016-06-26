@@ -16,7 +16,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.galileo.android.twitterclient.LoginActivity;
 import edu.galileo.android.twitterclient.R;
-import edu.galileo.android.twitterclient.hashtags.HashtagsFragment;
 import edu.galileo.android.twitterclient.images.ui.ImagesFragment;
 import edu.galileo.android.twitterclient.main.ui.adapters.MainSectionPagerAdapter;
 
@@ -40,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpAdapter() {
-        Fragment[] fragments = new Fragment[]{new ImagesFragment(),new HashtagsFragment()};
+        Fragment[] fragments = new Fragment[]{new ImagesFragment(),new edu.galileo.android.twitterclient.hashtags.ui.HashtagsFragment()};
         String[] titles = new String[]{getString(R.string.main_header_images),getString(R.string.main_header_hashtags)};
         MainSectionPagerAdapter adapter  =
                 new MainSectionPagerAdapter(getSupportFragmentManager(),
