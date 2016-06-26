@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +16,15 @@ import android.widget.ProgressBar;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.galileo.android.twitterclient.R;
+import edu.galileo.android.twitterclient.TwitterClientApp;
 import edu.galileo.android.twitterclient.entities.Image;
 import edu.galileo.android.twitterclient.images.ImagesPresenter;
+import edu.galileo.android.twitterclient.images.di.ImagesComponent;
 import edu.galileo.android.twitterclient.images.ui.adapters.ImagesAdapter;
 import edu.galileo.android.twitterclient.images.ui.adapters.OnItemClickListener;
 
@@ -35,7 +40,9 @@ public class ImagesFragment extends Fragment implements ImagesView, OnItemClickL
     @Bind(R.id.container)
     FrameLayout container;
 
+    @Inject
     ImagesAdapter adapter;
+    @Inject
     ImagesPresenter presenter;
 
 
@@ -49,7 +56,30 @@ public class ImagesFragment extends Fragment implements ImagesView, OnItemClickL
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_content, container, false);
         ButterKnife.bind(this, view);
+        setUpInjection();
+        /*
+        setup recycler view debe ser llamadado despues del setupInjection
+        para que esté listo el presentador y el adaptador
+         */
+        setupRecyclerView();
+        presenter.getImageTweets();
         return view;
+    }
+
+    private void setupRecyclerView() {
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        //ese 2 es para que tenga 2 columnas
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void setUpInjection() {
+        TwitterClientApp app = (TwitterClientApp)getActivity().getApplication();
+        ImagesComponent imagesComponent = app.getImagesComponent(this,this,this);
+
+        //presenter = imagesComponent.getPresenter();
+        imagesComponent.inject(this);
+
+
     }
 
     @Override
