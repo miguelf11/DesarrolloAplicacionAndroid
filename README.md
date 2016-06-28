@@ -5,8 +5,9 @@ Curso sobre desarrollo android , aquí incluiré todo lo relevante del curso dic
 
 ## Tabla de contenidos
 
-* [Documentación Oficial](#documentacion-oficial)
-* [Semana 0](#leccion-0)
+* [Documentación Oficial](#documentación-oficial)
+* [Genymotion](#configurar-genymotion)
+* [Semana 0](#lección-0)
 * [Semana 1](#lección-1)
 * [Semana 2](#lección-2)
 * [Semana 3](#lección-3)
@@ -14,14 +15,26 @@ Curso sobre desarrollo android , aquí incluiré todo lo relevante del curso dic
 
 
 
-
-# Documentacion Oficial
-
+## Documentación Oficial
 https://developer.android.com/guide/index.html
 
 
+## Configurar Genymotion
+http://aegis.pe/como-configurar-genymotion-con-android-studio
 
-# Leccion 0
+
+
+# Lección 0
+
+## Tabla de contenidos
+
+* [Características Generales](#clase0_1-características-generales)
+* [Fragmentos](#clase0_2-fragmentos)
+* [Butterknight](#clase0_3-butterknight)
+* [Semana 2](#lección-2)
+* [Semana 3](#lección-3)
+* [Semana 4](#)
+
 
 ## Clase0_1 Características Generales
 
@@ -101,9 +114,7 @@ Instalar butterknife
 simplemente ve a la pestaña File desde AndroidStudio, seleccionas de la lista donde dice Settings, te aparece una nueva ventana te ubicas en el listado de la parte izquierda donde dice Pluggins. Si te fijas en la parte de abajo te aparecerán tres botones selecciona el que dice Browse repositories.., luego en el buscador escribes Android ButterKnife Zelezny en la parte derecha te da una opción para instalar, lo instalas y luego te pide que reinicies el programa ya con eso lo tienes instalado.
 
 
-## Configurar Genymotion
 
-http://aegis.pe/como-configurar-genymotion-con-android-studio
 
 
 # Lección 1:
@@ -210,15 +221,13 @@ Entonces, además de lo que ya tengo, voy a agregar ciertas anotaciones como "@C
 
 Es muy importante que al elegir la clave primaria sepa que si quiero invocar un método del "ORM", es decir, si quiero guardar o actualizar este objeto, esta entidad, tiene que tener la clave primaria colocada, si es "null" simplemente no se va a guardar.
 
-Además de estas anotaciones para la clave primaria y la columna, el resto de funcionalidad va a tener "gets" y "sets" y es un poquito estricto en cuanto al nombre si tengo un campo que se llama "nombre", por
-ejemplo, "name", voy a esperar o más bien "DBFlow" va a esperar que tenga un "get" y un "set", "name". Si es diferente entonces me da un poquito de problema, lo puedo resolver con anotaciones,pero lo mejor es colocar esos nombres un poquito estandarizados.
+Además de estas anotaciones para la clave primaria y la columna, el resto de funcionalidad va a tener "gets" y "sets" y es un poquito estricto en cuanto al nombre si tengo un campo que se llama "nombre", por ejemplo, "name", voy a esperar o más bien "DBFlow" va a esperar que tenga un "get" y un "set", "name". Si es diferente entonces me da un poquito de problema, lo puedo resolver con anotaciones,pero lo mejor es colocar esos nombres un poquito estandarizados.
 
 Ya que definí la tabla, podría ser que necesite una asociación, también lo voy a definir con anotaciones, entonces la "foreign key" va a ir colocada de esta forma con anotaciones de una clase hacia otra y voy a poder agregar métodos para esa asociación de tal forma que cuando quiera agregar elementos sobre esta asociación que existe lo pueda agregar en una tabla, pero además agregue la referencia hacia la otra tabla.
 
 Para hacer la consulta de datos puedo utilizar un "flow manager", que este maneja, por ejemplo "cashing", maneja actualización, o puedo utilizar un "select" un objeto "select" colocando las clausulas necesarias. Lo que hace "DBFlow" es me genera una clase de la tabla
 
 Por ejemplo, si tengo un objeto, que voy a guardar un objeto receta de cocina, entonces, me va a generar una clase nueva que se llame "tabla" "guión bajo" "receta de cocina", y sobre este objeto va a tener todos los elementos, las propiedades que yo definí y luego ya puedo hacer estas consultas.
-
 
 Además, extiende la funcionalidad, porque mi clase además de las anotaciones tiene que heredar de "base model" y entonces eso va a permitir que tenga métodos como "save", "delete", "update","exist" para asegurarme que existe en la base de datos, etcétera.
 
@@ -277,5 +286,5 @@ Entonces, cuando sucede un "fling" que lleva cierta dirección y estoy haciendo 
 
 
 
-
+# Lección 4
 
