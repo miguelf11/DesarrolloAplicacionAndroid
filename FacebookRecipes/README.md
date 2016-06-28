@@ -1,6 +1,6 @@
 # Guía de SetUp
 
-1- crear un archivo gradle.properties que no se encuentra actualmente dentro del repositorio ya que incluye la API KEY la cual es información "sensible" que no debe ser compartida en un repositorio público en este archivo tiene que ir: 
+1- crear un archivo gradle.properties que no se encuentra actualmente dentro del repositorio ya que incluye la API KEY la cual es información "sensible" no debe ser compartida en un repositorio público en este archivo tiene que ir: 
 
 - FACEBOOK_APP_ID = ""
 - FACEBOOK_PROVIDER = "com.facebook.app.FacebookContentProvider"
