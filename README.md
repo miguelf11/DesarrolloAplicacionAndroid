@@ -297,4 +297,7 @@ así como la velocidad las recibo en el método "onFling". Sobrecargándolo, lo 
 Entonces, cuando sucede un "fling" que lleva cierta dirección y estoy haciendo un "swipe" hacia un lado, voy a reaccionar de cierta forma hacia la derecha, me quedo con la receta y hacia la izquierda, la desecho. Con estas dos clases "OnGestureDetector" y una interfaz que voy a eventualmente implementar en la actividad, voy a tener lo necesario para el manejo de "swipe".
 
 
+## 5 - 
+
+
 
