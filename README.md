@@ -5,11 +5,11 @@ Curso sobre desarrollo android , aquí incluiré todo lo relevante del curso dic
 
 ## Tabla de contenidos
 
-* [Documentación Oficial](#documentacion oficial)
-* [Semana 0](#leccion0)
-* [Semana 1](#lección 1)
-* [Semana 2](#lección 2)
-* [Semana 3](#lección 3)
+* [Documentación Oficial](#documentacion-oficial)
+* [Semana 0](#leccion-0)
+* [Semana 1](#lección-1)
+* [Semana 2](#lección-2)
+* [Semana 3](#lección-3)
 * [Semana 4](#)
 
 
@@ -21,7 +21,7 @@ https://developer.android.com/guide/index.html
 
 
 
-# Leccion0
+# Leccion 0
 
 ## Clase0_1 Características Generales
 
