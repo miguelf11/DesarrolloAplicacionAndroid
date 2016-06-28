@@ -2,9 +2,10 @@
 
 1- crear un archivo gradle.properties que no se encuentra actualmente dentro del repositorio ya que incluye la API KEY la cual es información "sensible" que no debe ser compartida en un repositorio público en este archivo tiene que ir: 
 
-FACEBOOK_APP_ID = ""
-FACEBOOK_PROVIDER = "com.facebook.app.FacebookContentProvider"
-FOOD_API_KEY= ""
+- FACEBOOK_APP_ID = ""
+- FACEBOOK_PROVIDER = "com.facebook.app.FacebookContentProvider"
+- FOOD_API_KEY= ""
+
 
 El primero sirve para resetear el valor del "id" de la "app" que vamos a crear en Facebook.
 
@@ -17,8 +18,7 @@ Por último nos pide el "FOOD_IP" que es la clave que nos va a permitir conectar
 
 Para generar el FACEBOOK_APP_ID se debe entrar en la página de desarrolladores de facebook :
 
-
-Para ello vamos al sitio de "developper" de Facebook, el cual es https://developers.facebook.com y una vez que nos hayamos registrado como "developers", en caso de no tener cuenta, vamos a ingresar a Mis Aplicaciones y vamos a agregar una aplicación.
+Para ello vamos al sitio de "developer" de Facebook, el cual es https://developers.facebook.com y una vez que nos hayamos registrado como "developers", en caso de no tener cuenta, vamos a ingresar a Mis Aplicaciones y vamos a agregar una aplicación.
 
 Vamos a seleccionar que es una aplicación para "android" y vamos a colocarle un nombre.
 
@@ -33,7 +33,7 @@ Cuando la aplicación se haya creado, nos presentará la guía de inicio rápido
 
 Como primer punto, nos presentará los pasos que son los que debemos agregar para que nuestra aplicación funcione.
 
-Si revisan los pasos pueden ir verificando que ya están implementados en el repositorio.
+Si revisan los pasos pueden ir verificando que ya están implementados en el código.
 
 Vamos a ir a la parte donde dice "Add Facebook App ID". Si recordamos en el ejemplo, agregamos nuestra referencia como que fuera un "string", entonces, lo único que vamos a hacer es seleccionar el "id" de la aplicación y lo vamos a copiar y pegar en nuestro archivo de "graddle.propperties", es decir en nuestro FACEBOOK_APP_ID = ""
 
@@ -60,9 +60,9 @@ IMPORTANTE EN WINDOWS:
 
 http://stackoverflow.com/questions/4388992/key-hash-for-android-facebook-app 
 
-la primera solución FUNCIONA , el keytool.exe se debería encontrar en C:/ArchivosdePrograma/Java/jdk/bin , se ubica en ese directorio dentro de la terminal de windows o dentro de la terminal de android studio, recuerde que para moverse entre directorios en windows use los comandos "cd" y "dir".
+la primera solución FUNCIONA , el keytool.exe se debería encontrar en C:/ArchivosdePrograma/Java/jdk/bin , se deben ubicar en ese directorio dentro de la terminal de windows o dentro de la terminal de android studio, recuerde que para moverse entre directorios en windows use los comandos "cd" y "dir".
 
-DE TODAS MANERAS COPIO LA SOLUCIÓN
+DE TODAS MANERAS COPIO LA SOLUCIÓN (en caso de que quiten el link)
 
 Here are the steps-
 
@@ -82,8 +82,6 @@ Con esto tendremos listo lo necesario para ejecutar nuestra aplicación. Como lu
 Entonces, con esto, completamos todo esto, si queremos podemos volver y darle "skip quick start" para ver cómo está configurada nuestra aplicación.
 
 Con esto estamos listos, entonces volvemos a nuestro proyecto y lo ejecutamos, luego de haber agregado nuestro "app id" en nuestro archivo de "graddle.propperties".
-
-Entonces, ejecutamos y esperamos a que corra.Cuando se haya ejecutado el proyecto, intentaremos hacerlo bien y vamos a hacer click en el botón "log in with Facebook", al hacer click nos comenzará a cargar y como vemos, ya nos mostró la interfaz para hacerlo bien, entonces vamos a ingresar nuestro usuario. Luego de haber ingresado nuestro usuario y nuestra contraseña correctamente, nos va a presentar una pantalla en donde nos pide los permisos que vamos a aceptar para la aplicación. En la parte de arriba nos mostrará que aún no se han aprobado algunos permisos, esto es porque nuestra aplicación aún no la estamos poniendo para "realise" y para cuando nosotros vayamos a lanzar nuestra aplicación, Facebook debe de revisarla y ver que los permisos que estamos pidiendo vayan acorde a lo que nuestra aplicación hace.Entonces, de momento, esto no es ningún problema, podemos hacer click en "continuar" y como siguiente punto nos mostrará el permiso que configuramos dentro de la aplicación, que es el que pregunta si estamos de acuerdo en que deseamos que la aplicación pueda publicar. Entonces, hacemos "click" en aceptar y cuando haya terminado, nos llevará a la pantalla "facebook recipes". En este momento como podemos ver, nos dió un error y no nos está mostrando las recetas. Esto es porque aún no hemos configurado correctamente el "key" del "api".
 
 
 
@@ -109,8 +107,7 @@ Como podemos ver, Food2Fork nos limita a una cierta cantidad de llamadas porque 
 
 Entonces, copiamos el "API key" y regresamos y lo pegamos en nuestro archivo de "graddle.propperties" en FOOD_API_KEY= ""
 
- Otro consejo que puedo darte es que cuando cambias esta llave, en ocasiones, si le damos ejecutar al "autorun", en ocasiones no se realiza el cambio y puede darnos algún problema, puede que siga igual que como estaba antes, que como no tuviera llave y puede que no nos funcione. Entonces, para estar seguros de que va a funcionar, abrimos el menú de "Build" y le damos a "Clean Project". Cuando haya terminado de limpiar el proyecto, vamos a hacer click en correr para probar que ya esté funcionando nuestra aplicación.
+ Otro consejo que puedo darte es que cuando cambias esta llave, en ocasiones, si le damos ejecutar al "autorun", en ocasiones no se realiza el cambio y puede darnos algún problema, puede que siga igual que como estaba antes, que como no tuviera llave y puede que no nos funcione. Entonces, para estar seguros de que va a funcionar, abrimos el menú de "Build" y le damos a "Clean Project".
 
-Entonces, vamos a cambiar al emulador y vamos a verificar que ya esté funcionando. Esperamos a que el proyecto termine de compilar y verificamos que todo corra correctamente. Cuando el proyecto se ejecute luego de que lo limpiamos, podremos ver que ya funciona nuestro "API", ya tenemos imágenes y podemos comenzar a seleccionar las que querramos agregar. Entonces, hacemos click en la estrellita y como podemos ver, ya nos está cambiando la lista de recetas. Vamos a guardar varias para poder utilizarlas en nuestro siguiente paso de ejemplo. Entonces, con esto ya verificamos que el "API" está funcionando correctamente, podemos cambiar a la otra pantalla para ver que ya todo esta funcionando como deseamos. Entonces está todo listo, ya tenemos nuestro proyecto corriendo con nuestras propias claves de nuestro "API" y de nuestra aplicación de Facebook.
 
 
