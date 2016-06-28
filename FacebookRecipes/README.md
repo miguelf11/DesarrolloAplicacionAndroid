@@ -70,6 +70,7 @@ Here are the steps-
 - 2- Extract it. create a folder- OpenSSL in C:/ and copy the extracted code here.
 - 3- detect debug.keystore file path. If u didn't find, then do a search in C:/ and use the Path in the command in next step.
 - 4- detect your keytool.exe path and go to that dir/ in command prompt and run this command in 1 line-
+
 		$ keytool -exportcert -alias androiddebugkey -keystore "C:\Documents and Settings\Administrator.android\debug.keystore" | "C:\OpenSSL\bin\openssl" sha1 -binary |"C:\OpenSSL\bin\openssl" base64
 
 - 5- it will ask for password, put android
