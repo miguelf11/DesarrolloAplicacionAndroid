@@ -66,14 +66,14 @@ DE TODAS MANERAS COPIO LA SOLUCIÓN (en caso de que quiten el link)
 
 Here are the steps-
 
-1- Download openssl from Google code (If you have a 64 bit machine you must download openssl-0.9.8e X64 not the latest version)
-2- Extract it. create a folder- OpenSSL in C:/ and copy the extracted code here.
-3-  detect debug.keystore file path. If u didn't find, then do a search in C:/ and use the Path in the command in next step.
-4- detect your keytool.exe path and go to that dir/ in command prompt and run this command in 1 line-
+- 1- Download openssl from Google code (If you have a 64 bit machine you must download openssl-0.9.8e X64 not the latest version)
+- 2- Extract it. create a folder- OpenSSL in C:/ and copy the extracted code here.
+- 3- detect debug.keystore file path. If u didn't find, then do a search in C:/ and use the Path in the command in next step.
+- 4- detect your keytool.exe path and go to that dir/ in command prompt and run this command in 1 line-
 		$ keytool -exportcert -alias androiddebugkey -keystore "C:\Documents and Settings\Administrator.android\debug.keystore" | "C:\OpenSSL\bin\openssl" sha1 -binary |"C:\OpenSSL\bin\openssl" base64
 
-5- it will ask for password, put android
-6- that's all. u will get a key-hash
+- 5- it will ask for password, put android
+- 6- that's all. u will get a key-hash
 
 
 
