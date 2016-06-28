@@ -44,7 +44,7 @@ Formas de crear fragmento
 
 - forma estática : en donde del xml yo agrego un componente y le coloco "FragmentName" y el nombre de la clase de mi fragmento y pongo todas las propiedas del fragmento
 
--forma dinámica: es cuando lo agrego con código en tiempo de ejecución por alguna razón necesito el fragmento y allí coloco los valores, se necesita un constructor vacío 
+- forma dinámica: es cuando lo agrego con código en tiempo de ejecución por alguna razón necesito el fragmento y allí coloco los valores, se necesita un constructor vacío 
 
 Dependiendo del caso de uso va a cambiar cual debemos usar.
 
@@ -70,7 +70,7 @@ Ejemplos:
 ¿cómo se comunica el fragmento con una actividad?
 usualmente dentro del fragmento puedo ser un "getActivity" y dentro de la actividad, tengo mi listado de fragmentos o puedo obtener alguno dependiendo si es estático y dinámico y entonces usualmente defino una interfaz código de "JAVA" que uno de los dos componentes va a tener una instancia y el otro componente lo va implementar a través de esta interfaz, puedo enviar eventos de uno a otro,
 
--una alternativa a ello sería usar una librería como "Event Bus"
+- una alternativa a ello sería usar una librería como "Event Bus"
 
 - programación reactiva (?)
 
