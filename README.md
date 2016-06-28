@@ -110,6 +110,9 @@ https://github.com/ykro/android-twitter
 
 # Lección 3
 
+## Código de kyros
+https://github.com/ykro/android-recetas
+
 ## Clase3_1 Retrofit
 
 Retrofit : librería para hacer peticiones a un API, estas peticiones se pueden hacer de muchas maneras pero hacerlas manualmente usando un "Thread" o un "Assign Task" una petición de HTTP y haciendo el reconocimiento manualmente del JSON que nos devolvió,puede llegar a ser altamente ineficiente, hay varias opciones para hacer las peticiones
