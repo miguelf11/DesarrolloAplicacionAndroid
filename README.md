@@ -9,11 +9,12 @@ además de todos los códigos que realice.
 https://developer.android.com/guide/index.html
 
 
-# Introdución 
 
-## Clase 1 - Carácterísticas Generales
+# Lección 0
 
-### Componentes de android
+## Clase0_1 Características Generales
+
+Componentes de android
 	1- Activity
 	2- Services
 	3- Broadcast receivers	
@@ -28,20 +29,18 @@ https://developer.android.com/guide/index.html
 - definido por el sistema
 
 
+## Clase0_2 Fragmentos
 
-## Clase1 - Fragmentos
-
-#### definicion
 Un fragmento va a representar un cierto comportamiento o una porción de interfaz gráfica y SIEMPRE un fragmento pertenece  a una actividad 
+ 
+Métodos dentro de los fragmentos
 
-#### Métodos dentro de los fragmentos
-
--onActivityCreated : se llama cuando la actividad es creada
+- onActivityCreated : se llama cuando la actividad es creada
 
 - onCreateView : se tiene que "convertir" el archivo xml hacia algo que pueda visualizar de tal forma que tenga contenidos
 
 
-### Formas de crear fragmento
+Formas de crear fragmento
 
 - forma estática : en donde del xml yo agrego un componente y le coloco "FragmentName" y el nombre de la clase de mi fragmento y pongo todas las propiedas del fragmento
 
@@ -50,7 +49,7 @@ Un fragmento va a representar un cierto comportamiento o una porción de interfa
 Dependiendo del caso de uso va a cambiar cual debemos usar.
 
 
-### Opciones para desarrollar
+Opciones para desarrollar
 
 - Usamos fragmentos y nos "sometemos" a este ciclo de vida tan complejo
 
@@ -76,7 +75,7 @@ usualmente dentro del fragmento puedo ser un "getActivity" y dentro de la activi
 - programación reactiva (?)
 
 
-## clase 1 - butterknight
+## Clase0_3 Butterknight
 
 - libreria butterknife : sirve para inyectar vistas(ya no se le llama "inyección si no vínculo("bain"))
 
@@ -86,8 +85,7 @@ usualmente dentro del fragmento puedo ser un "getActivity" y dentro de la activi
 existe un plugin en androidEstudio llamado "butterknife-zelezny" que permite crear estas "inyecciones" de forma automática
 
 
-instalar butterknife
-
+Instalar butterknife
 
 simplemente ve a la pestaña File desde AndroidStudio, seleccionas de la lista donde dice Settings, te aparece una nueva ventana te ubicas en el listado de la parte izquierda donde dice Pluggins. Si te fijas en la parte de abajo te aparecerán tres botones selecciona el que dice Browse repositories.., luego en el buscador escribes Android ButterKnife Zelezny en la parte derecha te da una opción para instalar, lo instalas y luego te pide que reinicies el programa ya con eso lo tienes instalado.
 
@@ -96,16 +94,23 @@ simplemente ve a la pestaña File desde AndroidStudio, seleccionas de la lista d
 
 http://aegis.pe/como-configurar-genymotion-con-android-studio
 
+
+# Lección 1:
+
 ## Código de Android Chat (cambian algunas cosas)
 https://github.com/ykro/android-chat-firebase
+
+
+# Lección 2:
 
 ## Código de Twitter app hecho por el presentador
 https://github.com/ykro/android-twitter
 
 
+
 # Lección 3
 
-## 1- Retrofit
+## Clase3_1 Retrofit
 
 Retrofit : librería para hacer peticiones a un API, estas peticiones se pueden hacer de muchas maneras pero hacerlas manualmente usando un "Thread" o un "Assign Task" una petición de HTTP y haciendo el reconocimiento manualmente del JSON que nos devolvió,puede llegar a ser altamente ineficiente, hay varias opciones para hacer las peticiones
 
@@ -129,39 +134,17 @@ Cuando comparamos con alternativas, podemos ver que el desempeño de Retrofit es
 
 Para trabajarlo usamos el mismo caso, que en otras librerías usamos GRADLE y agregamos el soporte en las dependencias, una vez que ya lo tenemos agregado, vamos a definir una clase, que va ser el servicio.
 
-por ejemplo, podemos llamarle a esta clase, GIT HUB SERVICES y obtener un
-listado de REPORT de GITHUB y aquí especificamos el verbo luego cual es el
-ENDPOINT después del URL base luego podemos especificar que nos devuelve o
-podemos especificar si no devuelve nada, también el nombre del método y los
-parámetros, usualmente lo que va devolver es un CALLBACK con un
-objeto que nosotros definimos.
+Por ejemplo, podemos llamarle a esta clase, GIT HUB SERVICES y obtener un listado de REPORT de GITHUB y aquí especificamos el verbo luego cual es el ENDPOINT después del URL base luego podemos especificar que nos devuelve o podemos especificar si no devuelve nada, también el nombre del método y los parámetros, usualmente lo que va devolver es un CALLBACK con un objeto que nosotros definimos.
 
 Los APIS muchas veces son diseñados por nosotros mismos y otras veces no, entonces de acuerdo a eso, es posible que sea una buena idea hacer un objeto por nosotros para recibir esa respuesta, hay veces que por ejemplo esperamos un listado, y la respuesta que viene del API incluye ese listado, pero en el nivel más alto es un objeto, es un objeto que incluye, no sé, talvez un conteo de elementos y como un elemento incluye el listado, entonces en ese caso no puedo indicarle a Retrofit que va recibir un listado de cosas, porque voy a usar algo, que haga ese reconocimiento.
 
-Si especifico por ejemplo que recibió un listado de repositorios, ese objeto
-repositorio, es un modelo, una representación, una entidad, usualmente
-esto es un PLAIN OLD JAVA OBJECT y por lo mismo, tiene que tener las
-propiedades que vienen en las definiciones de API, entonces ese
-modelo aunque no es parte de Retrofit, se da por hecho que lo tengo
-implementado, además del modelo, si acaso yo no quisiera todo, puedo
-agregarle una anotación de JSON IGNORE o dependiendo del procesador
-que estoy usando, pero además del modelo voy a tener un cliente, en el
-cliente voy a utilizar un BUILDER de Retrofit, específico cual es la URL base, especifico si quiero convertir de cierta forma, todas las propiedades de la petición y luego en base al servicio que definí, voy a construirlo, para construirlo voy a especificar la clase y uso un método CREATE de la instancia de Retrofit.
+Si especifico por ejemplo que recibió un listado de repositorios, ese objeto repositorio, es un modelo, una representación, una entidad, usualmente esto es un PLAIN OLD JAVA OBJECT(POJO) y por lo mismo, tiene que tener las propiedades que vienen en las definiciones de API, entonces ese modelo aunque no es parte de Retrofit, se da por hecho que lo tengo implementado, además del modelo, si acaso yo no quisiera todo, puedo agregarle una anotación de JSON IGNORE o dependiendo del procesador que estoy usando, pero además del modelo voy a tener un cliente, en el cliente voy a utilizar un BUILDER de Retrofit, específico cual es la URL base, especifico si quiero convertir de cierta forma, todas las propiedades de la petición y luego en base al servicio que definí, voy a construirlo, para construirlo voy a especificar la clase y uso un método CREATE de la instancia de Retrofit.
 
 Ahora para usarlo, tengo dos formas de hacerlo síncrona o asíncrona:
 
-Síncrona: va correr en el THREAD principal o en el THREADING que le
-indiquemos , y esto se utiliza, haciendo uso, de este servicio, sobre el que tengo un método, por ejemplo LIST REPOS, que era el que especificaba en mí ejemplos de mi listado de GITHUB entonces puedo decir "servicio.ListRepo"
-y como el parámetro que tenía allí, era el nombre de usuario, le mando ese nombre de usuario, es un método de JAVA pero
-Retrofit, lo está convirtiendo en un método que le va pedir algo al API,
-entonces para hacerlo síncrono ejecuto EXECUTE, entonces sobre este objeto,
-puedo ejecutar un método, ósea sobre el servicio, voy a obtener LIST REPO y
-sobre ello voy a hacer la llamada, esto no es tan común porque, yo estoy
-administrando los THREADS.
+Síncrona: va correr en el THREAD principal o en el THREADING que le indiquemos , y esto se utiliza, haciendo uso, de este servicio, sobre el que tengo un método, por ejemplo LIST REPOS, que era el que especificaba en mí ejemplos de mi listado de GITHUB entonces puedo decir "servicio.ListRepo" y como el parámetro que tenía allí, era el nombre de usuario, le mando ese nombre de usuario, es un método de JAVA pero Retrofit, lo está convirtiendo en un método que le va pedir algo al API, entonces para hacerlo síncrono ejecuto EXECUTE, entonces sobre este objeto, puedo ejecutar un método, ósea sobre el servicio, voy a obtener LIST REPO y sobre ello voy a hacer la llamada, esto no es tan común porque, yo estoy administrando los THREADS.
 
-Lo común es que la petición sea ASÍNCRONA y que quiera que Retrofit, maneje esos THREADS por mí, entonces lo que vamos hacer allí, es construir una llamada, y sobre esa llamada vamos a poner en cola con el método "en queue" un CALLBACK para cuando concluya, la llamada del método que especifiqué, y esto CALLBACK va tener dos métodos,
-uno cuando funciono y otro cuando no, que se van a ejecutar de forma
-asíncrona, entonces no lo asigno, no digo por ejemplo, LIST, REPO LIST igual a "instancia.getRepos", porque eso seria síncrono, sino en vez de eso hago un "enqueue", Retrofit lo va manejar por mí.
+Lo común es que la petición sea ASÍNCRONA y que quiera que Retrofit, maneje esos THREADS por mí, entonces lo que vamos hacer allí, es construir una llamada, y sobre esa llamada vamos a poner en cola con el método "en queue" un CALLBACK para cuando concluya, la llamada del método que especifiqué, y esto CALLBACK va tener dos métodos, uno cuando funciono y otro cuando no, que se van a ejecutar de forma asíncrona, entonces no lo asigno, no digo por ejemplo, LIST, REPO LIST igual a "instancia.getRepos", porque eso seria síncrono, sino en vez de eso hago un "enqueue", Retrofit lo va manejar por mí.
 
 Podría incluso, manipular un poco como se realiza esto, si acaso tengo muchas peticiones, esto por alguna razón tiende a pasar en aplicaciones empresariales que el BACKEND esta pensado en una forma extraña en la que hay que hacer muchas peticiones una vez cuando se inicializa y luego solo actualizaciones posteriores, con Retrofit.
 
@@ -175,7 +158,7 @@ hace Retrofit.
 
 
 
-##2- DBFlow
+## Clase3_2 DBFlow
 
 "DBFlow" es un "ORM", un "ORM" es un "Object Relational Mapper" que me va a permitir representar la base de datos como un objeto en un lenguaje de programación orientado a objetos.
 
@@ -193,8 +176,7 @@ Al compararlo con otros "ORMs":
 
 "DBFlow" termina siendo más rápido para la mayoría de casos y la forma de utilizarlo es bastante intuitiva.
 
-Para utilizarlo vamos a trabajar con anotaciones de "APT" igual que con "dagger". Ambos están basados fuertemente en anotaciones y lo agregamos
-en el archivo "gradle" de la raíz. Luego, en el archivo del app, siempre en "gradle" , vamos a agregar la referencia lo que es necesario para manejar todos los módulos de "DBFlow".
+Para utilizarlo vamos a trabajar con anotaciones de "APT" igual que con "dagger". Ambos están basados fuertemente en anotaciones y lo agregamos en el archivo "gradle" de la raíz. Luego, en el archivo del app, siempre en "gradle" , vamos a agregar la referencia lo que es necesario para manejar todos los módulos de "DBFlow".
 
 
 Una vez ya tenemos todo esto agregado hay que inicializar y definir la base de datos.
@@ -210,8 +192,7 @@ Luego así como definí la base de datos con una notación, en una clase de Java
 Entonces, necesito una notación para indicar que es una tabla, este objeto y lo voy a vincular con mi entidad o mi modelo o mi "Plain Old Java Object" como le querramos llamar de toda la estructura que estoy trabajando
 en "MVP - Clean".
 
-Entonces, además de lo que ya tengo, voy a agregar ciertas anotaciones
-como "@Column" para especificar una columna o "@PrimaryKey" para especificar cuál es la clave primaria.
+Entonces, además de lo que ya tengo, voy a agregar ciertas anotaciones como "@Column" para especificar una columna o "@PrimaryKey" para especificar cuál es la clave primaria.
 
 Es muy importante que al elegir la clave primaria sepa que si quiero invocar un método del "ORM", es decir, si quiero guardar o actualizar este objeto, esta entidad, tiene que tener la clave primaria colocada, si es "null" simplemente no se va a guardar.
 
@@ -220,11 +201,9 @@ ejemplo, "name", voy a esperar o más bien "DBFlow" va a esperar que tenga un "g
 
 Ya que definí la tabla, podría ser que necesite una asociación, también lo voy a definir con anotaciones, entonces la "foreign key" va a ir colocada de esta forma con anotaciones de una clase hacia otra y voy a poder agregar métodos para esa asociación de tal forma que cuando quiera agregar elementos sobre esta asociación que existe lo pueda agregar en una tabla, pero además agregue la referencia hacia la otra tabla.
 
-Para hacer la consulta de datos puedo utilizar un "flow manager", que este maneja, por ejemplo "cashing", maneja actualización, o puedo utilizar un "select" un objeto "select" colocando las clausulas necesarias. Lo que
-hace "DBFlow" es me genera una clase de la tabla
+Para hacer la consulta de datos puedo utilizar un "flow manager", que este maneja, por ejemplo "cashing", maneja actualización, o puedo utilizar un "select" un objeto "select" colocando las clausulas necesarias. Lo que hace "DBFlow" es me genera una clase de la tabla
 
-Por ejemplo, si tengo un objeto, que voy a guardar un objeto receta de cocina, entonces, me va a generar una clase nueva
-que se llame "tabla" "guión bajo" "receta de cocina", y sobre este objeto va a tener todos los elementos, las propiedades que yo definí y luego ya puedo hacer estas consultas.
+Por ejemplo, si tengo un objeto, que voy a guardar un objeto receta de cocina, entonces, me va a generar una clase nueva que se llame "tabla" "guión bajo" "receta de cocina", y sobre este objeto va a tener todos los elementos, las propiedades que yo definí y luego ya puedo hacer estas consultas.
 
 
 Además, extiende la funcionalidad, porque mi clase además de las anotaciones tiene que heredar de "base model" y entonces eso va a permitir que tenga métodos como "save", "delete", "update","exist" para asegurarme que existe en la base de datos, etcétera.
@@ -237,11 +216,10 @@ Entonces, en vez de eso recomiendo que usemos un "ORM" para agilizar el proceso 
 
 La mayoría incluyendo "DBFlow", el de "green robot", "green down" están basados en "SQL" entonces dependen de "SQL" totalmente.
 
-Ahora "Realm" toma un camino nuevo, implementa clases propias en temas más para el almacenamiento, lo que provoca que en algunos casos sea mucho más rápido, pero no tiene toda la implementación de "SQL", entonces si van a elegir "Realm" sepan eso y sepan que es una empresa la que está
-detrás de esto, entonces si por alguna razón hacen cambios que los pueden hacer cuando quieran, su código se va a ver afectado, tómenlo en cuenta, no es que sea una mala opción sino que implica muchas cosas elegirlo, por eso es que para el curso hemos elegido usar "SQL" con un "ORM" y elegimos "DBFlow".
+Ahora "Realm" toma un camino nuevo, implementa clases propias en temas más para el almacenamiento, lo que provoca que en algunos casos sea mucho más rápido, pero no tiene toda la implementación de "SQL", entonces si van a elegir "Realm" sepan eso y sepan que es una empresa la que está detrás de esto, entonces si por alguna razón hacen cambios que los pueden hacer cuando quieran, su código se va a ver afectado, tómenlo en cuenta, no es que sea una mala opción sino que implica muchas cosas elegirlo, por eso es que para el curso hemos elegido usar "SQL" con un "ORM" y elegimos "DBFlow".
 
 
-## 3- Food2Fork
+## Clase3_3 Food2Fork
 
 Para la aplicación que vamos a construir necesitamos recetas
 que mostrar. Podríamos usar un "backend" propio, podríamos desarrollar nuestrar propias recetas, o podríamos usar el de alguien más; que eso es lo que vamos a hacer.
@@ -269,7 +247,7 @@ letra "r", que es para indicar que son los más recientes, vamos a agregarle un 
 de este "API" puedo hacer las peticiones necesarias, esto es lo que me funciona y vamos a usarlo en conjunto con "retrofit".
 
 
-## 4- Swipe
+## Clase3_4 Swipe
 
 Para la interacción de la aplicación, vamos a manejar los botones
 y un gesto de "Swipe".
@@ -297,7 +275,6 @@ así como la velocidad las recibo en el método "onFling". Sobrecargándolo, lo 
 Entonces, cuando sucede un "fling" que lleva cierta dirección y estoy haciendo un "swipe" hacia un lado, voy a reaccionar de cierta forma hacia la derecha, me quedo con la receta y hacia la izquierda, la desecho. Con estas dos clases "OnGestureDetector" y una interfaz que voy a eventualmente implementar en la actividad, voy a tener lo necesario para el manejo de "swipe".
 
 
-## 5 - 
 
 
 
