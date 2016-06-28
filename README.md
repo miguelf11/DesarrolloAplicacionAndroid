@@ -1,7 +1,18 @@
 # DesarrolloAplicacionAndroid
 
-Curso sobre desarrollo android , aquí incluiré todo lo relevante del curso dictado por la Univ de Galileo mediante la plataforma edX,
-además de todos los códigos que realice.
+Curso sobre desarrollo android , aquí incluiré todo lo relevante del curso dictado por la Univ de Galileo mediante la plataforma edX, además de todos los códigos que realice.
+
+
+## Tabla de contenidos
+
+* [Documentación Oficial](#Documentacion Oficial)
+* [Semana 0](#lección 0)
+* [Semana 1](#lección 1)
+* [Semana 2](#lección 2)
+* [Semana 3](#lección 3)
+* [Semana 4](#)
+
+
 
 
 # Documentacion Oficial
@@ -224,44 +235,31 @@ Ahora "Realm" toma un camino nuevo, implementa clases propias en temas más para
 
 ## Clase3_3 Food2Fork
 
-Para la aplicación que vamos a construir necesitamos recetas
-que mostrar. Podríamos usar un "backend" propio, podríamos desarrollar nuestrar propias recetas, o podríamos usar el de alguien más; que eso es lo que vamos a hacer.
+Para la aplicación que vamos a construir necesitamos recetasque mostrar. Podríamos usar un "backend" propio, podríamos desarrollar nuestrar propias recetas, o podríamos usar el de alguien más; que eso es lo que vamos a hacer.
 
 Hay muchos "APIs" que ofrecen acceso a comida, ingredientes. 
 
 ¿Por qué lo elegí? Porque me permite indicarle en la petición el identificador de una receta, y permite también que le indique el conteo de recetas que quiero. Entonces, si le envío un uno en ese conteo, y le envío un identificador que es un número aleatorio, voy a poder obtener una receta aleatoria.
 
-No tengo ninguna garatía de nada, es decir el "API" no me está manejando que ese número aleatorio sea válido, etcétera.
-
-Entonces, a base de ensayo y error pues determiné un rango más o menos de
-donde se podían pedir recetas y con ese rango es con el que vamos a trabajar.
-
-El "API" que me va a dar estas recetas, requiere registrarme y  tiene un cierto número de peticiones diarias que van a ser suficientes para nuestro caso y devuelve esta respuesta en un formato "json",
-encontramos en su documentación oficial cuál es el formato y bueno, con este formato vamos a establecer un objeto que nos de esa respuesta, que tiene el conteo y el listado de recetas, ese listado va a tener
-únicamente un elemento y sobre ese elemento voy a trabajar para mostrarlo en la aplicación.
+El "API" que me va a dar estas recetas, requiere registrarme y  tiene un cierto número de peticiones diarias que van a ser suficientes para nuestro caso y devuelve esta respuesta en un formato "json", encontramos en su documentación oficial cuál es el formato y bueno, con este formato vamos a establecer un objeto que nos de esa respuesta, que tiene el conteo y el listado de recetas, ese listado va a tener únicamente un elemento y sobre ese elemento voy a trabajar para mostrarlo en la aplicación.
 
 Ese elemento trae varias propiedades, me interesan principalmente un identificador. Me interesa también que pueda tener la imagen, entonces, un URL de la imagen y me interesa también un URL hacia donde llevar al usuario para que vea más detalle. Eso no lo voy a mostrar
 en mi app sino lo voy a hacer con una acción asociada.
 
-Entonces, la requisición requieren un "API Key", que lo tengo que ir a pedir a este sitio. Un ordenamiento(sort) que lo vamos a hacer con una
-letra "r", que es para indicar que son los más recientes, vamos a agregarle un conteo que es uno y en la página(page = random) le vamos a enviar "random". Con esto podemos agregar la funcionalidad del "API".
+Entonces, la requisición requieren un "API Key", que lo tengo que ir a pedir a este sitio. Un ordenamiento(sort) que lo vamos a hacer con una letra "r", que es para indicar que son los más recientes, vamos a agregarle un conteo que es uno y en la página(page = random) le vamos a enviar "random". Con esto podemos agregar la funcionalidad del "API".
 
-"Food2Fork" no es que sea el único "API", sino que a través
-de este "API" puedo hacer las peticiones necesarias, esto es lo que me funciona y vamos a usarlo en conjunto con "retrofit".
+"Food2Fork" no es que sea el único "API", sino que a través de este "API" puedo hacer las peticiones necesarias, esto es lo que me funciona y vamos a usarlo en conjunto con "retrofit".
 
 
 ## Clase3_4 Swipe
 
-Para la interacción de la aplicación, vamos a manejar los botones
-y un gesto de "Swipe".
+Para la interacción de la aplicación, vamos a manejar los botones y un gesto de "Swipe".
 
-La implementacion del gesto de "Swipe" la podríamos hacer con un
-"view.pager" y permitirle al "view.pager" que lo maneje, pero como aquí tenemos una sola vista, no tenemos una colección de vistas, un adaptador tal vez es demasiado.
+La implementacion del gesto de "Swipe" la podríamos hacer con un "view.pager" y permitirle al "view.pager" que lo maneje, pero como aquí tenemos una sola vista, no tenemos una colección de vistas, un adaptador tal vez es demasiado.
 
 Entonces, en vez de eso, vamos a detectar manualmente el evento de "Swipe".
 
-Ahora, no hay un "unswipe", lo que sí hay es un "SimpleOnGestureDetector" que tiene un evento "OnDown", un evento "OnUp" y un
-evento "move". En base a eso, automáticamente maneja un evento "OnFling", entonces, yo voy a poder sobrecargar los métodos a partir de una clase que utilice este "SimpleOnGestureDetector" y cuando tenga el método "onDown" devolver "true" para indicar si lo estoy detectando
+Ahora, no hay un "unswipe", lo que sí hay es un "SimpleOnGestureDetector" que tiene un evento "OnDown", un evento "OnUp" y un evento "move". En base a eso, automáticamente maneja un evento "OnFling", entonces, yo voy a poder sobrecargar los métodos a partir de una clase que utilice este "SimpleOnGestureDetector" y cuando tenga el método "onDown" devolver "true" para indicar si lo estoy detectando
 y luego cuando tenga "onfling" ahí colocar toda la lógica necesaria.
 
 El "action code" que nos interesa es un "action_down", un "action_up" y un "action_move".
@@ -269,11 +267,11 @@ El "action code" que nos interesa es un "action_down", un "action_up" y un "acti
 Voy a necesitar cierto movimiento y sobre el método "onfling" es que voy a realizar la implementación.
 
 ¿Qué voy a validar?
+
 Que hay una distancia para saber que sí existe este "swipe", es decir,
 que no sólo un movimiento sobre la pantalla, sino que si hay cierto movimiento y esa validación va a tener un "threshold" que debo superar en cuanto a distancia y en cuanto a velocidad.
 
-Estas variables de la "x" y la "y", de dónde inició y hasta dónde llegó,
-así como la velocidad las recibo en el método "onFling". Sobrecargándolo, lo voy a poder hacer con una serie de "if" y voy a agregar un "listener" para reaccionar ante ese evento.
+Estas variables de la "x" y la "y", de dónde inició y hasta dónde llegó, así como la velocidad las recibo en el método "onFling". Sobrecargándolo, lo voy a poder hacer con una serie de "if" y voy a agregar un "listener" para reaccionar ante ese evento.
 
 Entonces, cuando sucede un "fling" que lleva cierta dirección y estoy haciendo un "swipe" hacia un lado, voy a reaccionar de cierta forma hacia la derecha, me quedo con la receta y hacia la izquierda, la desecho. Con estas dos clases "OnGestureDetector" y una interfaz que voy a eventualmente implementar en la actividad, voy a tener lo necesario para el manejo de "swipe".
 
