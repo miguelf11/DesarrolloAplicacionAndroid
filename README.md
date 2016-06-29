@@ -28,15 +28,16 @@ http://aegis.pe/como-configurar-genymotion-con-android-studio
 
 ## Tabla de contenidos
 
+* [Regresar al Inicio](#desarrolloaplicacionandroid)
 * [Características Generales](#clase0_1-características-generales)
 * [Fragmentos](#clase0_2-fragmentos)
 * [Butterknight](#clase0_3-butterknight)
-* [Semana 2](#lección-2)
-* [Semana 3](#lección-3)
-* [Semana 4](#)
 
 
 ## Clase0_1 Características Generales
+
+
+* [Regresar a la lección](#lección-0)
 
 Componentes de android
 	1- Activity
@@ -54,6 +55,8 @@ Componentes de android
 
 
 ## Clase0_2 Fragmentos
+
+* [Regresar a la lección](#lección-0)
 
 Un fragmento va a representar un cierto comportamiento o una porción de interfaz gráfica y SIEMPRE un fragmento pertenece  a una actividad 
  
@@ -101,6 +104,9 @@ usualmente dentro del fragmento puedo ser un "getActivity" y dentro de la activi
 
 ## Clase0_3 Butterknight
 
+* [Regresar a la lección](#lección-0)
+
+
 - libreria butterknife : sirve para inyectar vistas(ya no se le llama "inyección si no vínculo("bain"))
 
 - libreria dagger : sirve para inyectar dependencias 
@@ -132,10 +138,24 @@ https://github.com/ykro/android-twitter
 
 # Lección 3
 
-## Código de kyros
+
+## Tabla de contenidos
+
+* [Regresar al Inicio](#desarrolloaplicacionandroid)
+* [Código del Presentador](#código)
+* [Retrofit](#clase3_1-retrofit)
+* [DBFlow](#clase3_2-dbflo)
+* [Food2Fork](#clase3_3-food2fork)
+* [Swipe](#clase3_4-swipe)
+
+
+## Código
 https://github.com/ykro/android-recetas
 
+
 ## Clase3_1 Retrofit
+
+* [Regresar a la lección](#lección-3)
 
 Retrofit : librería para hacer peticiones a un API, estas peticiones se pueden hacer de muchas maneras pero hacerlas manualmente usando un "Thread" o un "Assign Task" una petición de HTTP y haciendo el reconocimiento manualmente del JSON que nos devolvió,puede llegar a ser altamente ineficiente, hay varias opciones para hacer las peticiones
 
@@ -184,6 +204,8 @@ hace Retrofit.
 
 
 ## Clase3_2 DBFlow
+
+* [Regresar a la lección](#lección-3)
 
 "DBFlow" es un "ORM", un "ORM" es un "Object Relational Mapper" que me va a permitir representar la base de datos como un objeto en un lenguaje de programación orientado a objetos.
 
@@ -244,6 +266,8 @@ Ahora "Realm" toma un camino nuevo, implementa clases propias en temas más para
 
 ## Clase3_3 Food2Fork
 
+* [Regresar a la lección](#lección-3)
+
 Para la aplicación que vamos a construir necesitamos recetasque mostrar. Podríamos usar un "backend" propio, podríamos desarrollar nuestrar propias recetas, o podríamos usar el de alguien más; que eso es lo que vamos a hacer.
 
 Hay muchos "APIs" que ofrecen acceso a comida, ingredientes. 
@@ -261,6 +285,8 @@ Entonces, la requisición requieren un "API Key", que lo tengo que ir a pedir a 
 
 
 ## Clase3_4 Swipe
+
+* [Regresar a la lección](#lección-3)
 
 Para la interacción de la aplicación, vamos a manejar los botones y un gesto de "Swipe".
 
