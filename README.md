@@ -95,7 +95,7 @@ Ejemplos:
 
 - Puede incluir los fragmentos, pero para la comunicación haga uso de algo diferente a lo que el fragmento provee
 ¿cómo se comunica el fragmento con una actividad?
-usualmente dentro del fragmento puedo ser un "getActivity" y dentro de la actividad, tengo mi listado de fragmentos o puedo obtener alguno dependiendo si es estático y dinámico y entonces usualmente defino una interfaz código de "JAVA" que uno de los dos componentes va a tener una instancia y el otro componente lo va implementar a través de esta interfaz, puedo enviar eventos de uno a otro,
+usualmente dentro del fragmento puedo ser un "getActivity" y dentro de la actividad, tengo mi listado de fragmentos o puedo obtener alguno dependiendo si es estático y dinámico y entonces usualmente defino una interfaz código de "JAVA" que uno de los dos componentes va a tener una instancia y el otro componente lo va implementar a través de esta interfaz, puedo enviar eventos de uno a otro.
 
 - una alternativa a ello sería usar una librería como "Event Bus"
 
@@ -118,8 +118,6 @@ existe un plugin en androidEstudio llamado "butterknife-zelezny" que permite cre
 Instalar butterknife
 
 simplemente ve a la pestaña File desde AndroidStudio, seleccionas de la lista donde dice Settings, te aparece una nueva ventana te ubicas en el listado de la parte izquierda donde dice Pluggins. Si te fijas en la parte de abajo te aparecerán tres botones selecciona el que dice Browse repositories.., luego en el buscador escribes Android ButterKnife Zelezny en la parte derecha te da una opción para instalar, lo instalas y luego te pide que reinicies el programa ya con eso lo tienes instalado.
-
-
 
 
 
@@ -185,11 +183,11 @@ Los APIS muchas veces son diseñados por nosotros mismos y otras veces no, enton
 
 Si especifico por ejemplo que recibió un listado de repositorios, ese objeto repositorio, es un modelo, una representación, una entidad, usualmente esto es un PLAIN OLD JAVA OBJECT(POJO) y por lo mismo, tiene que tener las propiedades que vienen en las definiciones de API, entonces ese modelo aunque no es parte de Retrofit, se da por hecho que lo tengo implementado, además del modelo, si acaso yo no quisiera todo, puedo agregarle una anotación de JSON IGNORE o dependiendo del procesador que estoy usando, pero además del modelo voy a tener un cliente, en el cliente voy a utilizar un BUILDER de Retrofit, específico cual es la URL base, especifico si quiero convertir de cierta forma, todas las propiedades de la petición y luego en base al servicio que definí, voy a construirlo, para construirlo voy a especificar la clase y uso un método CREATE de la instancia de Retrofit.
 
-Ahora para usarlo, tengo dos formas de hacerlo síncrona o asíncrona:
+Para usarlo, tengo dos formas de hacerlo síncrona o asíncrona:
 
 Síncrona: va correr en el THREAD principal o en el THREADING que le indiquemos , y esto se utiliza, haciendo uso, de este servicio, sobre el que tengo un método, por ejemplo LIST REPOS, que era el que especificaba en mí ejemplos de mi listado de GITHUB entonces puedo decir "servicio.ListRepo" y como el parámetro que tenía allí, era el nombre de usuario, le mando ese nombre de usuario, es un método de JAVA pero Retrofit, lo está convirtiendo en un método que le va pedir algo al API, entonces para hacerlo síncrono ejecuto EXECUTE, entonces sobre este objeto, puedo ejecutar un método, ósea sobre el servicio, voy a obtener LIST REPO y sobre ello voy a hacer la llamada, esto no es tan común porque, yo estoy administrando los THREADS.
 
-Lo común es que la petición sea ASÍNCRONA y que quiera que Retrofit, maneje esos THREADS por mí, entonces lo que vamos hacer allí, es construir una llamada, y sobre esa llamada vamos a poner en cola con el método "en queue" un CALLBACK para cuando concluya, la llamada del método que especifiqué, y esto CALLBACK va tener dos métodos, uno cuando funciono y otro cuando no, que se van a ejecutar de forma asíncrona, entonces no lo asigno, no digo por ejemplo, LIST, REPO LIST igual a "instancia.getRepos", porque eso seria síncrono, sino en vez de eso hago un "enqueue", Retrofit lo va manejar por mí.
+Lo común es que la petición sea asíncrona y que quiera que Retrofit, maneje esos THREADS por mí, entonces lo que vamos hacer allí, es construir una llamada, y sobre esa llamada vamos a poner en cola con el método "en queue" un CALLBACK para cuando concluya, la llamada del método que especifiqué, y esto CALLBACK va tener dos métodos, uno cuando funciono y otro cuando no, que se van a ejecutar de forma asíncrona, entonces no lo asigno, no digo por ejemplo, LIST, REPO LIST igual a "instancia.getRepos", porque eso seria síncrono, sino en vez de eso hago un "enqueue", Retrofit lo va manejar por mí.
 
 Podría incluso, manipular un poco como se realiza esto, si acaso tengo muchas peticiones, esto por alguna razón tiende a pasar en aplicaciones empresariales que el BACKEND esta pensado en una forma extraña en la que hay que hacer muchas peticiones una vez cuando se inicializa y luego solo actualizaciones posteriores, con Retrofit.
 
