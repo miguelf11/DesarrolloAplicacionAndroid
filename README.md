@@ -327,102 +327,79 @@ con ellos vamos a trabajar bastante y es importante que estén familiarizados
 
 ## Clase0_6 Recycler View
 
-Vamos a platicar ahora del "Recycler View" usualmente vamos a
-presentar contenido en forma de un listado, ya sea un listado con un elemento detrás
-de otro o incluyendo columnas, cuando incluimos columnas usualmente a esto se
-le llama "Grilla" o "Grid" en inglés y antiguamente teníamos para manejarlo
-un "List View" y un "Read View" ambos han sido reemplazados en la versión más nueva
-por el "Recycler View" que permite mostrar el contenido de las dos formas y con un
-poco más de opciones
-el listado luce, asi verdad, un elemento detrás de otro y el "Grid" pues tiene
-varias columnas puede ser ordenado de diferentes maneras
-ahora a partir de de "Material Design" y de la versión "Lollipop" de "Android" se
-introdujo el "Recicler View" para mostrar contenido, en una forma más sencilla en
-el "List View" y el "Grid View" todavía son soportados pero eventualmente van a caer
-en desuso
-entonces por eso nos enfocamos en cómo funciona el "Recycler View" tal vez el
-punto más importante del "Recycler View" es que no se encarga de muchas cosas
-tanto "List View" como "Grid View" tenía demasiadas responsabilidades
-"Recycler View" tiene poca responsabilidad, entonces no se encarga de posicionar los
-elementos en la pantalla eso lo va a ser un "LayoutManager" no se encarga de animar
-cuando queremos cierta animación para agregar elementos o quitarlos, etcétera
-eso lo va hacer "Item Animator", no se encarga tampoco de manejar ningún
-evento asociado con el listado o con el "Grid"a excepción del "Scroll" es el
-único evento que va a manejar, para esto podemos hacer una interfaz, podemos
-obtener la posición en el "ViewHolder"
-hay diferentes formas de hacerlo sin embargo el "RecyclerView" no se va
-encargar de nada de esto, entonces ¿Qué hace? únicamente para mostrar el
-contenido y como tiene tan poca responsabilidad
-les puedo personalizarlo de una forma sencilla y esto se ha vuelto como un
-Modulo, entonces el formato o la forma en que vamos a trabajar el "Recycler View"
-va a requerir de un "LayoutManager" podría ser "Linear Layout Manager"
-o un "Grid Layout Manager" que va a conectarse a una fuente de datos
-estos datos podrían ser, una base de datos, podría hacer un arreglo, podría
-ser un cursor, etcétera y en medio hay un vínculo, ese vínculo lo logramos con
-un adaptador, el adaptador no hace más que tomar una fuente de datos y
-mostrarla de cierta forma, entonces el elemento que lo muestra por un lado el
-"UI" hay es el "RecyclerView" y por otro lado la fuente de datos puede venir de
-muchos lugares, es importante tener en cuenta que el "Recycler View" va
-requerir que el adaptador lo implemente, en decir el desarrollador para tener que
-implementar el adaptador de acuerdo a sus necesidades
-entonces para empezar el "LayoutManager" éste va a posicionar el contenido
-repito no lo hace el "Recycler View" lo hace "LayoutManager" y va determinar cuándo
-vamos a poder reutilizar elementos que no son visibles para ello vamos a usar un "View Holder"
-platicamos en un momento entonces "LayoutManager" podría ser
-de tipo listado con un "LinearLayoutManager" podría ser "Grid" con un "Grid Layout Manager"
+"Recycler View" sirve  para presentar contenido en forma de un listado, ya sea un listado con un elemento detrás
+de otro o incluyendo columnas.
+
+cuando incluimos columnas usualmente a esto se le llama "Grilla" o "Grid" en inglés y antiguamente teníamos para manejarlo un "List View" y un "Read View",ambos han sido reemplazados en la versión más nueva por el "Recycler View" que permite mostrar el contenido de las dos formas y con un
+poco más de opciones.
+
+
+El "Grid" pues tiene varias columnas puede ser ordenado de diferentes maneras
+
+Ahora a partir de de "Material Design" y de la versión "Lollipop" de "Android" se introdujo el "Recicler View" para mostrar contenido, en una forma más sencilla.
+
+Tal vez el punto más importante del "Recycler View" es que no se encarga de muchas cosas, tanto "List View" como "Grid View" tenía demasiadas responsabilidades "Recycler View" tiene poca responsabilidad entonces:
+
+No se encarga de posicionar los elementos en la pantalla, eso lo va a ser un "LayoutManager"
+
+No se encarga de animar ,cuando queremos cierta animación para agregar elementos o quitarlos, etcétera.Eso lo va hacer un "Item Animator".
+
+No se encarga tampoco de manejar ningún evento asociado con el listado o con el "Grid".
+
+A excepción del "Scroll", es el único evento que va a manejar, para esto podemos hacer una interfaz, podemos obtener la posición en el "ViewHolder", hay diferentes formas de hacerlo sin embargo el "RecyclerView" no se va encargar de nada de esto. 
+
+Entonces,¿Qué hace? 
+
+Únicamente va mostrar el contenido y como tiene tan poca responsabilidades puedo personalizarlo de una forma sencilla y esto se ha vuelto como un
+Modulo.
+
+Entonces el formato o la forma en que vamos a trabajar el "Recycler View" va a requerir de un "LayoutManager" ,podría ser "Linear Layout Manager" o un "Grid Layout Manager" que va a conectarse a una fuente de datos estos datos podrían ser, una base de datos, podría hacer un arreglo, podría ser un cursor, etcétera y en medio hay un vínculo, ese vínculo lo logramos conun adaptador.
+
+El adaptador no hace más que tomar una fuente de datos y mostrarla de cierta forma, entonces el elemento que lo muestra por un lado el
+"UI" es el "RecyclerView" y por otro lado la fuente de datos puede venir de muchos lugares.
+
+Es importante tener en cuenta que el "Recycler View" va requerir que el adaptador lo implemente, en decir el desarrollador va tener que implementar el adaptador de acuerdo a sus necesidades.
+
+
+Entonces para empezar el "LayoutManager"(éste va a posicionar el contenido) y va determinar cuándo vamos a poder reutilizar elementos que no son visibles, para ello vamos a usar un "View Holder"
+
+"LayoutManager" podría ser de tipo listado con un "LinearLayoutManager", podría ser "Grid" con un "Grid Layout Manager"
 Podría ser una "Grilla" escalonada, con celdas de diferente
-tamaño éste se llama "StaggeredGridLayoutManager" o bien podría
-personalizarlo, conforme hay actualizaciones de la librería de
-diseño van habiendo cambios sobre que soporta que se agrega que casi en desuso
-etcétera y en la mayoría de casos, nos la vamos a agreglar con un "LinearLayout" o con un
-"GridLayout" algunos casos puntuales
-ban ha requerido algo diferente pero por lo demás es relativamente fácil
-trabajar dentro del adaptador hay una parte muy importante
-voy a tener que construir un adaptador heredando del "Recycler View" punto
-"adapter" sin embargo además de ello voy a tener
-la obligación de implementar un "View Holder" el "View Holder" lo que me permite es
-reutilizar "R" elementos, entonces voy a tener una clase que tiene referencia a
-cada una de las filas del listado o de las celdas si fuera un grid
-entonces cómo estoy llamando "FindViewById" constantemente esto tiende a ser
-ineficiente y como quiero rehusar estos elementos para no llenar la memoria
-entonces el "ViewHolder" es un patrón que permite a través de un objeto simple
-mantener una referencia a los identificadores de la vista estos
-identificadores me van a permitir mostrar renderizar el contenido de cada
-una de las celdas sea uno de los elementos del listado una de las celdas
-del "Grid" y vamos a incluirlo dentro de la "Adaptador" entonces vamos a tener que
-escribir una clase personalizadas que herede del "Adapter" del "Recycler View"
-y vamos a necesitar un "View Holder" que va a tener que ser inflado en el adaptador en
-un método que se llama "onCreate View Holder" y en otro método va a ser
-vinculados los datos de la fuente de datos con el "View Holder" este método
-que se llama "OnBindViewHolder" me permite hacer eso ahora cuando quiero manejar el
-"click"
-todavía no hay una forma estandarizada lo que vamos a estar haciendo usualmente
-es manejarlo con "View Holder"
-entonces vamos usar una interfaz que defina cómo actuar ante ese clic ese
-interfaz la vamos a recibir en el adaptador y la vamos a asignada al "ViewHolder"
-entonces vamos a manejar el clic sobre el "View" que tiene el "ViewHolder" y con la
-interfaz que recibimos y reaccionar de alguna manera.
+tamaño,éste se llama "StaggeredGridLayoutManager" o bien podría
+personalizarlo.
+
+Conforme hay actualizaciones de la librería de diseño van habiendo cambios sobre que soporta,que se agrega,que cae en desuso ,etcétera y en la mayoría de casos, nos la vamos a agreglar con un "LinearLayout" o con un "GridLayout" algunos casos puntuales ban ha requerido algo diferente pero por lo demás es relativamente fácil trabajar.
+
+Dentro del adaptador hay una parte muy importante voy a tener que construir un adaptador heredando del "RecyclerView.adapter" sin embargo además de ello voy a tener la obligación de implementar un "View Holder".
+
+El "View Holder" lo que me permite es reutilizar "R" elementos.
+
+Entonces voy a tener una clase que tiene referencia a cada una de las filas del listado o de las celdas si fuera un grid.
+
+Entonces cómo estoy llamando "FindViewById" constantemente esto tiende a ser ineficiente y como quiero rehusar estos elementos para no llenar la memoria, entonces el "ViewHolder" es un patrón que permite a través de un objeto simple mantener una referencia a los identificadores de la vista estos identificadores me van a permitir mostrar,renderizar el contenido de cada una de las celdas, sea uno de los elementos del listado o una de las celdas del "Grid" y vamos a incluirlo dentro del "Adaptador".
+
+Entonces vamos a tener que escribir una clase personalizadas que herede del "Adapter" del "Recycler View" y vamos a necesitar un "View Holder" que va a tener que ser inflado en el adaptador, en un método que se llama "onCreate View Holder" y en otro método va a ser vinculados los datos de la fuente de datos con el "View Holder" este método que se llama "OnBindViewHolder" me permite hacer eso.
+
+Ahora cuando quiero manejar el "click" todavía no hay una forma estandarizada lo que vamos a estar haciendo usualmente es manejarlo con "View Holder" entonces vamos usar una interfaz que defina cómo actuar ante ese click ,esa interfaz la vamos a recibir en el adaptador y la vamos a asignar al "ViewHolder" entonces vamos a manejar el click sobre el "View" que tiene el "ViewHolder" y con la interfaz que recibimos y reaccionar de alguna manera.
 
 
 
 ## Clase0_7 Implementación de los componentes
 
 
-Vamos a platicar un poco acerca de la implementación del "ReciclerView"
-hemos visto la teoría que necesitamos un adaptador, un "ViewHolder" un "LayoutManager"
-pero como se ve esto en la práctica ya en el código en "Android"
-"Studio"como lo voy importar, el primer paso y eso es importante tenerlo en
-mente es que como "RecyclerView" se introdujo en "Lollipop" en la versión cinco
-hay muchas otras versiones anteriores que no lo soportan de forma nativa
-entonces debo agregar, una referencia en el archivo "Build" puntos "Grade" para esta
-librería, entoces vamos a incluir allí dentro de dependencias un "compile" el
-nombre de la biblioteca y también de la versión, una vez que ya lo tengo
-aquí ya dispongo del componente aunque no esté produciendo algo para "Lollipop"
-o versiones más nuevas, entonces ya puedo escribir en el "Layout" un elemento
-"RecyclerView" que es parte de "android.support.v7.widget" donde estaban
-varios elementos de soporte y le tengo que especificar ancho y alto como a
-todos los elementos le tengo que usualmente poner un identificador porque
-de esta manera le voy a poder vincular un "adapter" y además opcionalmente
+Acerca de la implementación del "ReciclerView" hemos visto la teoría que necesitamos un adaptador, un "ViewHolder" y un "LayoutManager" pero como se ve esto ya en el código en "AndroidStudio", cómo lo voy importar.
+
+El primer paso y eso es importante tenerlo en mente es que como "RecyclerView" se introdujo en "Lollipop" en la versión cinco,hay muchas otras versiones anteriores que no lo soportan de forma nativa entonces debo agregar, una referencia en el archivo "Build.gradle" para esta librería:
+
+```java
+dependencies{
+	compile 'com.android.support:recyclerview-v7:+'
+}
+```
+
+Entoces vamos a incluir allí dentro de dependencias un "compile", el nombre de la biblioteca y también de la versión.Una vez que ya lo tengo,ya dispongo del componente aunque no esté produciendo algo para "Lollipop" o versiones más nuevas.
+
+Entonces ya puedo escribir en el "Layout" un elemento "RecyclerView" que es parte de "android.support.v7.widget" donde estaban varios elementos de soporte y le tengo que especificar ancho y alto como a todos los elementos le tengo que usualmente poner un identificador porque de esta manera le voy a poder vincular un "adapter" y además opcionalmente
 podría ponerle más atributos incluso indicarle si va a tener "ScrollBars"
 para que el contenido lo muestre cierta manera podría hacer "Linear Layout Manager"
 horizontal o vertical y desde aquí desde "Layout" indicar cómo van a
@@ -496,6 +473,478 @@ ya tenemos nuestro "RecyclerView" funcionando.
 
 ## Código de Android Chat (cambian algunas cosas)
 https://github.com/ykro/android-chat-firebase
+
+## Clase1_1 Arquitectura de una Aplicación
+
+¿Por qué deberíamos preocuparnos en general por la arquitectura de una aplicación?
+
+El primer punto importante aquí en la mantenibilidad,es decir que el software va ser escrito en cierto momento del tiempo y hacia el futuro nuestra expectativa, es que podamos seguir utilizando el mismo software.
+
+Si vemos las cosas desde un punto de vista financiero, el software no es barato,sobre todo porque depende de personas que van a estar produciéndolo, que requiere cierta formación, lo que implica que va tener cierto costo,entonces nos interesa que a largo plazo, el mismo software se pueda actualizar y mantener.
+
+Desde el punto de vista técnico y de implementación, si cierto software no tiene arquitectura,entonces va ser muy difícil darle mantenimiento al futuro, va ser un gran reto, y como es mas fácil, pensar en una solución nueva, que entender lo que alguien más hizo, constantemente, vamos a estar implementando toda la base de código
+
+Nos interesa la escalabilidad, porque vamos a planificar, con cierto segmento de clientes en mente, pero este segmento de clientes puede crecer mucho, pero si construimos para algo que va atender a muchos usuarios y no los tenemos es un desperdicio, por eso es mejor construir algo que atiende un número menor de usuarios, pero que puede crecer, sin necesidad de implementar desde cero, eso es escalabilidad y una aplicación con arquitectura me va permitir escalar.
+
+Otro punto importante son las pruebas, en muchas empresas se hacen procesos de (QA) o aseguramiento de calidad, manuales, en donde hay una persona que está revisando que el software funcione, esto se puede hacer, pero a largo plazo no va ser escalable.
+
+Es mucho mejor escribir pruebas automatizadas, más código que pruebe el código y que nos diga si funciona o no funciona.
+
+A la vez hay un vínculo cercano, entre todas estas características, es decir que algo sea testeable que se pueda probar, me va permitir que sea escalable, y a la vez, que sea mantenible, una aplicación con una arquitectura bien definida, me va permitir que el proceso de pruebas sea más sencilla, a pesar de que las prueba han venido haciendo hace tiempo, no es tan común en todos los tipos de aplicaciones sino en cierto, desarrollo se ha vuelto un poco más fácil acercarse a las pruebas que otro, y bueno todo esto lo estamos haciendo porque a largo plazo queremos confiabilidad.
+
+Hay diferentes tipos de software, algunos sistemas de tiempo real, que tienen características específicas, pero en general queremos que el software sea confiable, no queremos que si algo falla, tengamos que reiniciar el equipo, no queremos que si vamos a una institución que nos preste un servicio nos diga, que no se puede, que el software fallo, sino queremos confiabilidad a largo plazo, ahora esto también está vinculado con el desacoplamiento, porque no hay arquitectura, los módulos están conectados unos con otros sin una división clara, entonces tenemos acoplamiento.
+
+Queremos lo opuesto, queremos que sea modular, queremos que no haya unión entre los diferentes módulos, para poder conectar y desconectar, mantener, actualizar y enfocarnos en cierta tarea.
+
+Al final de día, es importante tener en mente que el software se trata de las personas, es decir yo no escribo código para una computadora, a pesar de que la computadora lo va a ejecutar, sea un móvil una tablet o una desktop, etcétera, yo escribo código, para mis compañeros de trabajo, que van a interpretar ese código, agregarle a quitarle funcionalidad o modificarlo de alguna forma, yo escribo código para que sea legible por otros seres humanos, tengamos eso en mente, el software se trata de personas, y por eso es que la arquitectura va ser tan importante para a implementar para nosotros porque a través de ella vamos a producir software de mejor calidad, siempre teniendo en mente a las personas.
+
+
+## Clase1_2 MVP
+
+Puntualmente vamos a discutir la arquitectura "MVP" y la arquitectura "CLEAN" vamos a ver cómo trabajar con ambas en conjunto, pero es importante tener en mente, que por el estado que se encuentra Android está alcanzando cierto, punto de madurez, hay mucha discusión alrededor de esto, y alguien me decía de broma recientemente, que no ha vista dos aplicaciones de Android con la misma arquitectura, aunque los cambios sean pequeños, si hay variantes, si hay muchas aproximaciones, nosotros, elegimos esta porque creo que es una de las mejores  que existen, pero sobre todo en el momento que entendemos la necesidad de implementar una arquitectura, no importa que patrón de desarrollo de software utilicemos, vamos a poder hacer algo muy bueno, entonces más allá de los específicos que vamos a ver, es importante tener en mente la razón de la arquitectura y dejar a un lado las actividades y fragmentos, aquí hablo específicamente de Android, que se encarga de todo, un "GoActivity" que accede a la base de datos, muestra elementos, oculta elementos, tiene lógica, etcétera,
+
+Para esto, vamos a partir de un modelo bastante conocido, que ya tiene años, de estarse utilizando, que es el "ModelViewController" o el "MVC" en el caso del "Model View Controller" que tuvo un apogeo fuerte en web y todavía se utiliza bastante. 
+
+Tenemos tres capas, tenemos una capa de vista que es con la que interactúa el usuario, una capa de controlador que va conectar con la vista y luego va ir con el modelo, y en el modelo voy a tener los datos, la lógica de negocios, etcétera, y de regreso le notifica al controlador de algo, y el controlador actualiza la vista, entonces más o menos ese es el flujo de trabajo en "MVC" esta arquitectura se usa desde hace un poco de tiempo, en algunas plataformas de móviles, en Android, no hay algo que nos forcé a utilizarla, un par de personas decían, si es que estoy utilizando "MVC" la vista, es el "xml" el controlador es la actividad y el modelo es un "Plain JavaObject" en realidad no es tan sencillo, porque tiene que haber una comunicación clara.
+
+"MVP" es una variante de "MVC" en donde nos vamos a enfocar, principalmente en el contenido que ve el usuario, por ejemplo, como es lo correcto de "MVC" que tanto debe hacer el modelo, hay mucha discusión alrededor de la arquitectura, y nos va presentar un reto interesante de saber cómo abordarlo.
+
+Ahora con "MVP" lo que vamos hacer, es que vamos a partir en tres capas, que son bastante notorias:
+
+el usuario va interactuar con la vista, la vista, es totalmente pasiva, la vista no debería tener lógica, en cuanto a lo que está mostrando y en general, la vista va ser, la actividad, ahora la vista cuando necesita algo, va a acudir al presentador
+
+el presentador le da formato, el presentador accede a métodos tanto de la vista, como del modelo, cuando el presentador necesita de estos datos, va a traerlos al modelo,
+
+el modelo tiene la lógica del negocio, obtiene estos datos de alguna forma, los devuelve al presentador y el presentador lo devuelve a la vista para poderlo implementar, vamos a tener diferentes métodos.
+
+Entonces para resumir un poco, la vista va mostrar la información de el contenido de una característica o un módulo, el presentador se va encargar de acceder al modelo y llamar los métodos de la vista cuando corresponde y el modelo va manejar la lógica de negocios. 
+
+Entonces implementando esto en Android, cada uno de los componentes va tener una interfaz de JAVA, en donde va ser una especie de contrato y se va definir cuáles son los métodos que tiene.
+
+Por ejemplo, en la vista, si estamos manejando un inicio de sesión, vamos a tener algo que habilite y deshabilite los controles de entrada, que habilite o que oculte o que muestre una barra de progreso y de cierta forma, que vamos hacer cuando ya esté la sesión iniciada, o haya un inicio de sesión valido y qué hacer si ocurre un error, en la implementación que usualmente es una actividad, lo que vamos hacer es tomar estos método e implementarlos, por ejemplo si estamos mostrando un "ProgressBar" vamos a decir que el "Visibility" es "VISIBLE" si lo estamos ocultando que el "Visibility es" "View.GONE" esta implementación es parte de lo que maneja la actividad, es decir que la actividad tiene más carga que la vista, pero claramente definimos que puede hacer la vista, y, la vista, va tener este vínculo con el presentador es decir el presentador va tener una instancia de la vista, así como una instancia del modelo, además que el presentador va tener algo que va poder hacer alguna acción para que la vista la invoque, entonces por ejemplo desde la vista voy a tener un botón de "Login" cuando presiono ese botón llamo al método del presentador, y el presentador se encarga de decirle a la vista, Hey! si está llamando este método, entonces tienes que deshabilitar est e botón y mostrar un "ProgressBar" pero la vista no tiene esa lógica, la vista lo único que sabe es que el presentador va ser algo y elpresentador al recibir esta llamada allí si tiene lógica, allí se hace un cierto procesamiento y se le dice a la vista que actué a cierta manera, además de eso, además de lo que haga la vista, va tener un vínculo con el modelo, entonces al implementar el presentador, vamos a incluir una instancia del modelo, sobre la cual, vamos a ejecutar algún método, para tener datos y que podamos devolver a la vista, ahora todo esto lo estamos haciendo en una vía, eventualmente, el modelo va concluir, ya sea de forma síncrona o asíncrona, y tiene que reportarle de regreso al presentador y el presentador a su vez a la vista, para poder hacer, podriamos trabajar con una interfaz, con un "CallBack" que vamos a tener implementado en el presentador y que vamos a tener una instancia en el modelo, entonces el modelo va tener una instancia, de esta interfaz, por ejemplo va tener un método "Success" o "Error" que lo manda a llamar, cuando sucede el evento correspondiente y el presentador implementa estos métodos y en ellos se comunica con la vista, a través de esta comunicación, entonces logramos regresar en el "Stack" de las capas de la arquitectura, ahora el modelo es el que trabajo es el que va a tener la lógica de negocios, en el mismo ejemplo del inicio de sesión, aquí es donde tendríamos un método que accede al "API" hace alguna validación y en base a esa validación tiene éxito o no, y esa validación es la que reporta, con este reporte, entonces lo tenemos de vuelta en la vista, y eso es "MVP" ahora si por alguna razón yo no quiero utilizar esta interfaz, para comunicación, una alternativa común, es usar una librería, "Event Bus" con esta librería, podemos reemplazar el "CallBack" y usarla para poder comunicarnos desde el modelo hacia el presentador, el modelo emite un evento y el presentador captura ese evento, y ante la captura va realizar alguna acción dentro de la vista.
+
+Recapitulando un poco, lo que queremos aquí es dividir en diferentes capas, "MVP" tiene tres. "Model" "View" "Presenter", el modelo, la vista y el presentador,
+
+La vista va ser totalmente pasiva, va mostrar el contenido únicamente,
+
+El presentador va a llamar a los métodos de la vista y va llamar a los métodos del modelo y entonces va tener referencia hacia ambos
+
+El modelos va tener la lógica del negocio, es el que ejecuta algo, eventualmente se comunica con el presentador, que a su vez , se comunica con la vista.
+
+entonces de esta forma logramos desacoplar y dividir en capas, la vista usualmente es una actividad, tenemos también implementaciones tanto para modelo como presentador y si no queremos usar la interfaz, podemos usar "Event Bus" para la comunicación, así que eso es "MVP".
+
+
+
+
+## Clase1_3
+
+"Clean" el "Clean Architecture" es una propuesta del "Uncle Bob" una de las personas
+que más aportes ha hecho a la ingeniería de software como disciplina, y lo que busca
+es desacoplar, entonces vamos a tener diferentes pasos, en los que podemos interactuar con
+diferentes componentes de nuestra aplicación
+
+La arquitectura "Clean" lo que me permite es tener una interfaz gráfica, con la que voy a interactuar, esta interfaz va a conectarse de cierta forma con un repositorio que tiene los datos a través de un "interactor" el interactuador lo que va ser es conectar a la interfaz con el repositorio, el repositorio eventualmente podría tener datos haciendo uso de cierta lógica de dominio, alguna base de datos, etcétera, haciendo uso de entidades, que son los objetos que modelan el contenido, esto de cierta forma regresa hacia la interfaz, para mostrar el contenido.
+
+Entonces vamos a de cierta forma combinar "Clean" con "MVP" vamos a usar "MVP" para la parte frontal, vamos a tener una vista y un presentador pero no vamos a tener un modelo, en vez de tener un modelo en donde toda la lógica de negocios, esta acoplada, vamos a usar un interactuador.
+
+El interactuador es invocado por el presentador y a su vez invoca al repositorio, entonces
+la ventaja de esto, es que el interactuador no tiene que saber mucho de ninguno de los
+dos casos, solo tiene que saber que alguien lo llamar y que cuando lo llamen, tiene que
+llamar a su vez al repositorio, lo que nos facilita mucho el proceso, ya que solo es
+un elemento de conexión, y el repositorio va realizar las tareas de devolver los datos,
+o algún acceso que sea necesario.
+
+entonces una vista, que se conecta con un presentador que a su vez el presentador podría tener más de un interactuador, el
+interactuador va con el repositorio, que a su vez va con la fuente de datos y entonces el interactuador lo que va ser es conectar
+con el repositorio acceder a esta lógica de negocios y las fuentes de datos, van a estar disponibles.
+
+Entonces tengo ahora más capas en mi implementación, porque voy a tener un contrato una interfaz, que define al interactor y que define al "repository"
+entonces va ver un punto donde esa separación de componentes y se va notar
+si esta acoplado o no, ese acoplamiento usualmente se da ahora, ya no en el modelo ya no va ser
+una clase, que hace mucho el modelo sino entre el repositorio y la fuente de datos.
+
+por ejemplo podriamos tener muchos interactuadores, que nos presente un contenido, que, no sé, uno
+muestra palabras, otro muestra números, en el presentador invocamos a cualquiera de los
+dos.
+
+Ahora ya que conocemos un poco más de "Clean" y que podemos combinar con "MVP" vamos
+a tomar esa aproximación, la ventaja es que vamos a tener múltiples capas de la arquitectura,
+por lo tanto va estar claramente segmentado y lo podemos implementar de una forma, en
+la que no nos provoque acoplamiento, la desventaja, es que vamos a tener varias capas de abstracción
+adicionales, es importante comprender claramente cuáles son los principios de la arquitectura
+que estamos utilizando.
+
+Cada capa va aumentar una carga en la complejidad de la aplicación,
+pero a la vez, va aportar en simplificar, porque va ser más ordenado y voy a saber
+a dónde dirigirme, estas no son en absoluto, las únicas, en aproximaciones que hay para
+la arquitectura, pero son las que he encontrado en mi experiencia, con un poco mayor de facilidad
+y tiene un buen "Trade Off" entre la facilidad que tienen para aproximarse y los resultados
+buenos que nos van a dar a largo plazo, en la mantenibilidad, en el testing, en la confiabilidad,
+etcétera.
+
+En la mayoría de casos vamos a ver que el interactuador es una capa que solo conecta, y hay que ser cuidadosos en decidir cuándo,
+implementar un solo interactuador o más de uno, usualmente va tener solo un método por
+ejemplo que se llama ejecutar o "execute", cuando tengo varias tareas, tengo que saber
+cómo separarlo, y sobre todo tengamos en mente que esto es una guía, no son mandamientos
+escritos en piedra.
+
+
+
+## Clase1_4 Firebase
+
+
+"FireBase" es una herramienta muy interesante que surgió
+a partir de una "StartUp" que eventualmente fue adquirida por "Google"
+
+La idea detrás de "FireBase" desde el inicio ha sido proveer, una base de datos de tiempo real, pero además
+de esto,la documentación es muy buena y es una documentación viva, de la cual podemos tomar del código, directamente para nuestro proyecto,
+entonces además de proveer el servicio, es un servicio que es exageradamente fácil.
+
+"FireBase" entra en la categoría de "backend as a service" es decir lo que busca, es que cuando estamos
+desarrollando un APP nos enfoquemos en todo lo que el usuario, ve y con lo que el usuario
+interactúa, no en el servidor que está detrás, tiene varios kit de desarrollo para las principales
+plataformas, incluyendo "web" y móviles y los principales "FrameWorks"
+
+Entonces de "FireBase" lo más conocido es la base de datos en tiempo real,
+para empezar esto es clave, el hecho que sea de tiempo real nos permite hacer muchas aplicaciones
+que otro tipo de Backend no permitiría, y esta base de datos, es de formato no relacional,
+esto quiere decir que no vamos a tener tablas con filas y columnas, como por ejemplo, en
+un gestor de base datos relacional como "Postgresql" o "MySQL" sino vamos a tener un árbol, que
+tiene diferentes ramas para representar los datos.
+
+Ahora la base de datos de tiempo real, es la característica más conocida, pero no es la única, actualmente otra característica
+que se está aprovechando bastante es la autenticación, "FireBase" me permite manejar la autenticación
+con usuario y contraseña, de forma anónima, pero pasando por el proceso de autenticación
+aunque no tenga credenciales, o con los principales proveedores como las credenciales de "Google"
+"Twitter" "Facebook" etcétera, esto lo que permite es que integremos, la autenticación
+de un kit de desarrollo de cualquiera de estos proveedores junto con "FireBase"y "FireBase"
+va manejar todo el flujo dentro del APP
+
+Aparte hay una librería que se llama "FireBaseUI" que nos facilita la vida en varios aspectos de interactuar con la herramienta incluyendo
+la autentificación, entonces esta es otra característica importante.
+
+además de la autenticación posee almacenamiento estático, esto quiere decir que yo voy a
+poder publicar "FireBase" como almacenamiento como "Hosting" archivos que no requieran de
+un procesamiento del lado del servidor sino archivos de "HTML" que tienen algún tipo
+de código de JAVASCRIPT que corre del lado del cliente, esto eventualmente pues me permite
+provocar una desconexión, en el sentido que ya no voy a necesitar un servidor donde publicar
+todo esto, sino voy a estar trabajando, únicamente con código del cliente.
+
+Además de estas características, está en activo desarrollo, entonces ahora que es parte
+de Google que adquirió la empresa, hay muchas cosas que se están trabajando, que eventualmente
+van a ir enriqueciendo la herramienta.
+
+
+
+## Clase1_5 Firebase y Android
+
+Para trabajar con "Firebase" independientemente de la plataforma que utilicemos necesitamos
+crear una aplicación, entonces vamos a entrar en el sitio y nos aparece, una parte en donde
+podemos ingresar el nombre de la aplicación y esto nos va generar un URL único, este
+URL es el "EndPoint" o hacia dónde vamos a apuntar las peticiones o el envío de datos
+de nuestro "BackEnd".
+
+"Firebase" provee kits para que esto sea más fácil, pero también podriamos manejar como un "RES API" como cualquier otro.
+
+La facilidad de que sea una base de datos de tiempo real, nos permite tener varias ventajas, entonces
+vamos a entrar a esta plataforma, vamos a registrarnos, a crear una aplicación nueva,
+y luego nos lleva a un "DashBoard" en donde tenemos todo lo que nos provee a partir de
+las características, entre ellos, pues están los datos, hay algo de analítica, hay autenticación,
+como es una base datos, puedo escribirle, ciertas reglas de seguridad, para condicionar
+quien puede escribir, quien puede leer, o es de acceso libre, y con este "DashBoard"
+vamos a poder administrar en general todo.
+
+Dentro del "DashBoard" hay una parte de autenticación donde eventualmente podemos habilitarlo, colocar las credenciales, si es con un tercero la
+autenticación, no con usuario o contraseña, con email contraseña, etcétera.
+
+Ahora la parte de los datos, es un tema importante con "Firebase", hay que tener en mente que
+esto es no relacional, entonces vamos a tener una estructura con un formato similar al de
+"JSON" el "Java Script Object Notation" que es muy común para APIS modernos y permiten
+enviar datos de una forma, bastante clara, concisa y que no sea muy pesada.
+
+Cada elemento dentro de "Firebase" va tener un URL asignado, entonces por ejemplo yo voy a tener una raíz
+del árbol que va ser el URL completo y sobre esa raíz voy a tener elementos, digamos voy
+a tener un, para el manejo de un listado de cosas por hacer, entonces cada elemento dentro
+de ese listado de cosas, va tener a su vez una URL y digamos que voy a guardar, quien
+lo agrego, que texto tiene, etcétera, entonces también cada parte de este elemento va tener
+su propio URL, es importante aunque se permiten muchos niveles para anidar datos, no abusemos
+de esto, porque eventualmente, esto tendría una repercusión en nuestro manejo de datos,
+el modelo de cómo vamos a representar los datos es muy importante, y en la misma documentación
+de "Firebase" tenemos varias indicaciones de que hacer y qué no hacer, por ejemplo
+una práctica común es manejar índices, en los que voy a tener un valor que voy a
+representar el identificador y con ese identificador puedo ir a traer a otro nodo del árbol los
+datos, si yo hago la requisición sobre cierto nodo, digamos sobre la raíz, voy a traer
+todo lo que está debajo de ese nodo, que eventualmente, en un momento podría ser más
+de lo que el usuario necesita, entonces el modelo de datos hay que tenerlo en mente,
+recordemos que como es no relacional tengo esta estructura con varias ramas y que eventualmente
+al final voy a tener en formato de diccionario un "KEY" y un "VALUE" es decir un identificador
+o una llave de un lado y un valor asociado , del otro, que me va permitir guardar estos
+datos, ahora para trabajar esto, con Android, tenemos varios pasos a seguir, el primero
+de ellos, es que podamos importar la librería, ya sea únicamente el cliente o algo adicional
+como por ejemplo "Firebase UI" para el manejo de interfaz, dentro del archivo de "GRADLE"
+en las dependencias, en algunos casos tenemos un problema de que hay duplicados entonces
+vamos a agregar dentro de Android, me refiero dentro del grupo Android, una opción de paquetes
+en donde excluimos algunos para evitar estos duplicados, una vez ya tenemos esto listo,
+entonces podemos trabajar con la inicialización, usualmente esto lo hacemos en un "ApplicationClass"
+el "ApplicationClass" que es la clase que hereda de "Application" y que hay que indicar
+en el "Manifest" entonces en el "ApplicationClass" en el método "OnCreate" vamos hacer esta
+inicialización, es necesario únicamente inicializar la librería, es un método estático,
+también podría allí mismo indicarle a "Firebase" obtener una referencia a partir de un URL,
+el manejo de esto pues es un poco más abierto a discusión, creo que es una buena costumbre
+tener la URL en un solo lugar y conocer cuáles son los nodos, sobre los que vamos a estar
+trabajando, entonces cuando esto está listo, ya puedo proceder a acceder a "Firebase" y
+tanto leer como escribir datos.
+
+
+
+
+## Clase1_5 Escribir y Leer Datos de Firebase
+
+Para hacer una prueba de concepto, es decir algo de lo más simple y poder interactuar
+con la base de datos, leyendo y escribiendo datos, no necesitamos más que algo que envíe
+esos datos y un "Listener" algo que este escuchando para cuando halla datos nuevos, es importante
+que más que hacer consultas, permanentes es decir cuando necesito los datos, voy a
+pedirlos, lo que voy a utilizar es una suscripción, para obtener actualizaciones de tal forma
+que me quito la carga pesada, de estar constantemente pidiendo datos, y se las doy al servidor,
+y el servidor me va avisar cuando hay datos nuevos, ahora esto implica varias cosas, talvez
+la más importante es la que vamos a tener un canal abierto al servidor para recibir
+esos datos nuevos, entonces hay que tenerlo en mente, al construir nuestra aplicación,
+entonces que vamos hacer para probarlo, el diseño es muy sencillo, tenemos un "Input"
+un "EditText" en el que vamos a colocar algo, y un botón el que va provocar que ese algo
+se envíe, al servidor y vamos a tener un suscriptor, escuchando por el servidor, que
+nos va mostrar esos datos, una vez, que se haya actualizado, entonces para escribir si
+lo tenemos que resumir lo que vamos hacer es , elegir un nodo, descendiente, usualmente
+a estos en ingles les llamamos "Children" entonces vamos a elegir un "Child" sobre estos
+nodos, y vamos agregar información, para agregar información hay dos métodos que
+puedo utilizar "Push" y "SetValue" e incluso los puedo combinar, la diferencia básica
+es que con "SetValue" voy a indicar el valor que quiero colocar sobre el nodo, y con "Push"
+voy a pedir a "Fire Base" que genere un identificador único, basado en la fecha y hora, entonces
+con "Push" la facilidad que tenemos, es que "FireBase" va generar este identificador,
+yo no me tengo que preocupar por ejemplo, de una llave primaria, con "setValue" ya envío
+los datos, una vez tengo ese modo de identificar, si quisiera manejar el "Key" que va controlar
+el "value" asociado, entonces puedo colocarlo manualmente, entonces para hacerlo, todo lo
+que necesito es una referencia, sobre el nodo que voy a escribir, podría ser la raíz,
+podría ser algún nodo descendiente, depende mucho del caso, entonces para la prueba, simplemente
+tomamos esa referencia, y hacemos una llamada, a alguno de esos métodos, definiendo cual
+es el nodo que quiero escribir y listo, entonces en el momento en que presiono click sobre
+el botón, voy a escribir esos datos en la referencia, y bueno, para que sea un poquito
+más amigable, vamos a borrar el contenido de lo que el usuario escribió, eso provoca
+que se envíe hacia el "Backend" hacia "FireBase" en este caso y podemos ver en tiempo real
+como se actualiza, como aquí estamos un nodo de prueba, es el caso básico, entonces no
+va ver tanto un problema en cuanto a buscar en donde esta sino que el mismo nodo, se va
+actualizar, y con eso escribimos, ahora para obtener datos lo que vamos hacer es un suscriptor
+que escuche por los eventos y modifique la información en base a los eventos que estamos
+recibiendo, para ello hay varias formas de hacerlo, entonces podemos hacer un "Listener"
+de eventos, para la referencia, y este puede ser de tipo valor, cuando está cambiando
+directamente de un nodo especifico o descendientes entonces tenemos un "ValueEventListener" para
+que cuando cambie el valor y un "ChildEventListener" por ejemplo si yo estoy haciendo un listado
+de cosas por hacer, voy a tener un nodo, que se llame, no sé, talvez elementos, y debajo
+de ese nodo voy a poner todos los elementos, entonces para mostrar esos elementos en un
+listado en la aplicación, voy a tener una suscripción sobre ese nodo, por otro lado
+si talvez, quiero mantener una actualización del estado de conexión, aunque esto "FireBase"
+ya lo maneja por su lado, pero si quisiera mantener un evento que sucede cada cierto
+tiempo, que no tiene descendientes, entonces podría ser un nodo que tenga estatus online
+offline, conectado desconectado, y sobre ello manejar el "Listener" es importante que "FireBase"
+no va manejar un conteo de la cantidad de "Listener" entonces yo tengo que tener un
+código ordenado y saber cuándo agregar y quitar esos "Listeners" el caso básico, pues
+lo puedo agregar en un "onCreate" o en un "onResume" y quitarlo en un "onPost" o un
+"onDestroy" dependiendo que carga representa para el usuario tener este "Listener" ahora
+por si alguna razón me interesa un solo valor, y no me interesan las actualizaciones, entonces
+tengo un método disponible para ellos, se llama "addListenerForSingleValueEvent" entonces
+ese se va disparar una sola vez, no lo tengo que manejar como manejo los otros dos, sino
+va a implicar que no escucho por actualizaciones, entonces para recibir información, vamos
+hacer eso vamos hacer una suscripción sobre el nodo, como no tenemos un listado de cosas,
+entonces esperamos únicamente que sea un elemento, el que está cambiando, un valor,
+para este ejemplo, si tuviera una suscripción el "ChildEventListener" tiene varios métodos,
+cuando el descendiente, se agrega, cuando borra, cuando se mueve de un nodo a otro,
+y en los dos casos tenemos cuando hay un error, cuando se cancela la requisición para manejar
+ese error, entonces en el ejemplo básico pues lo agregamos a que escuche y cuando hay
+un cambio, entonces nos muestra un mensaje un "TOAST" el cambio no necesariamente tiene
+que ser del APP de Android, o del APP de Android corriendo en mi dispositivo, sino podría
+tener más de un dispositivo o provocar ese cambio en el navegador, que tiene ese DASHBOARD,
+en donde puedo manipular sin ningún problema, y me lo va mostrar para el ejemplo en el "Load"
+o en el emulador, resumiendo un poco, entonces para leer, voy a tener un suscriptor, ya sea
+para un solo evento, o para múltiples actualizaciones, puede ser por un solo valor o por todos los
+descendientes de un nodo, y para escribir voy a usar "setValue" o "Push" o ambos, y
+"Push" tiene la diferencia que me genera un identificador único en base a la fecha y
+hora, así que , así es como interactuamos con "FireBase".
+
+
+
+## Clase1_5 Snackbar
+
+Otro elemento de Material Design que tenemos es el "SnackBar" me permite comunicarme con
+el usuario de una forma que sea un poco más eficiente, que lo que existía hasta el momento,
+en algún momento, seguro hemos trabajado con un "Toast" que sale en la parte inferior
+con una tonalidad gris y se desaparece, el "Toast" nos tiene mucha flexibilidad, aparece
+con una cierta duración corta o larga de acuerdo a como hayamos escrito el código
+y desaparece, algunas veces al querer comunicar al usuario cierta acción, es complicado saber
+que usar, por ejemplo, interrumpirlo y mostrarle un dialogo, talvez, no sea la mejor idea un
+"Toast" tampoco, porque talvez, quiera deshacer la acción o poder deshacer algo más entonces
+el "SnackBar" es la extensión del "Toast" es un aviso, pero es más flexible, para empezar
+necesita una vista que va ser el "Host" porque en esta vista va aparecer en la parte inferior
+mostrando un mensaje con cierta duración, pero adicional a esto le voy a poder agregar
+una acción, una acción que yo describo, casi siempre por ejemplo, si estoy haciendo,
+no sé, eliminar de algo, es posible que se haya equivocado, entonces casi siempre se
+agrega aquí, una acción de deshacer, no es obligatorio agregar la acción, pero me
+lo permite, solo el hecho de tener la posibilidad de hacerlo me ayuda bastante, este elemento
+no es complejo, no tenemos que pensar, que el "Toast" cambio, pero a la vez, si tengo
+que considerar como utilizarlo, y hay varias referencias, entre las que pueden ir a leer
+más, por ejemplo la documentación oficial, la guía de Material Design y de parte de
+Google pues nos han contado un poquito más de como esperarían ellos que lo usemos, de
+nuevo, todo esto son buenas practicas que podemos poner en aplicación al desarrollar
+cualquier tipo de App que tengamos en mente, así que es el "SnackBar" y es un elemento
+que vale la pena conocerla.
+
+## Clase1_6 TextInputLayout
+
+Vamos a platicar de algunos elementos de "ui" y entre estos elementos de "ui" que se incluyeron
+en Materials Desing está el "TextImputLayout" este elemento si lo tuviéramos que resumir
+, pues es un envoltorio sobre un elemento ya existente, "EditText" y a este le agrega
+mayor funcionalidad, entonces el "Edit Text" lo hemos tenido desde hace mucho tiempo en
+Android, pero hay ciertas cosas puntuales que talvez necesitábamos que funcionara de
+forma diferente, entonces el "Text Input Layout" lo que hace es esto, le agrega características,
+por ejemplo permite "hint" o la sugerencia de texto, el "Edit Text" que ha tenido siempre,
+no se borre al momento de escribir, sino se muestre un poco más pequeña arriba y otro
+color, también permite reportar errores, entonces en el momento de que algo ocurrió,
+aparece un símbolo de error y me va mostrar un error que yo mismo, puedo configurar con
+un método "setter" un "setError" sobre el campo de texto, para que sea mucho más fácil
+de manejar, para que podamos usar "Edit Text" esto, perdón, para que podamos usar "Text
+Input Layout" esto viene de la librería de diseño, entonces tenemos que agregar el soporte
+en las dependencias en el archivo "build.gradle" de el proyecto, en AndroidStudio y luego en
+el "Layout" vamos a agregarle propiedades a este elemento, al igual que todos los elementos
+tiene que tener ancho y alto, y la característica especifica de este elemento es que va estar
+anidado dentro de el, un "Edit Text" es decir puesto de otra forma "Text Input Layout" es
+un envoltorio para el "Edit Text" una vez, ya lo tengo así, lo puedo obtener en código,
+y puedo trabajar sobre cualquiera de los dos, ya sea sobre el "Text Input Layout" o sobre
+el "Edit Text" y puedo colocar lo que considere necesario entre ello pues el "hint" y los
+errores para reportárselo al usuario es lo más común, y encontramos más información
+de este elemento, en la documentación oficial de Google y en la representación oficial
+de Materials Design.
+(((Música)))
+
+
+## Clase1_7 AppBar y toolbar
+
+Cuando trabajamos Materials Design, evaluamos un poco de estos elementos nuevos que tenemos,
+hay una en particular que llama la atención, porque la barra de acceso, ha sufrido varias
+modificaciones a lo largo del camino, actualmente pues lo que tenemos es "App Bar" y "Tool Bar"
+y sobre ello trabajamos, entonces en base a esto, hay varias partes importantes del
+menú, en la parte superior de un APP por ejemplo puedo tener un icono de navegación,
+para mostrar un "Navigation View" puedo tener un título, para mostrar cierto contenido
+relevante al usuario, que tiene que ver con lo que está visualizando en ese momento,
+y además tengo botones de acción, estos botones tienen un icono, y aparte aparece
+a su lado, un icono de menú, bajo el icono de menú, tengo más acciones, pero ellas
+no tienen un icono asociado sino solamente es texto, en base a que tanto se use esta
+acción, puedo tomar la decisión de colocarlo en uno u otro, entonces para utilizar el "Tool
+Bar" que es esta extensión, sobre el App Bar que teníamos antes, necesito varias,
+cosas, necesito primero agregar la librería de "AppCompat" en "gradle" y que mi actividad
+herede de "AppCompat" luego necesito especificar que colores, voy a estar utilizando, entonces
+hay varios sitios que me ayudan a elegir estos colores, o puedo tomar algún tema, generado
+por AndroidStudio, que este especificado, luego como el "Tool Bar" reemplaza, al "Action
+Bar" que teníamos antes, tengo que especificar que la aplicación o la actividad que esté
+usando, dependiendo que tanto es usado mi "Tool Bar" no tenga un "Action Bar" esto lo
+puedo hacer especificando el estilo en donde voy a modificar el estilo de Window en "style.xml"
+y luego en el "manifest" indicar que mi actividad o la aplicación completa, va estar utilizando
+este tema, que no tienen "Action Bar" y luego especificar en el código en la actividad
+que , vamos a mostrar ese, contenido en vez del de el "Action Bar" tradicional, con esto
+especificado y agregando los tamaños necesarios, ya lo puedo incluir dentro de mis estilos,
+ahora es común, que este estilo, que el "Tool Bar" vaya dentro del "Action Bar" y a su vez,
+esto vaya dentro de un "Coordinator Layout" coordina vamos a ver en su momento detalles
+de el, pero usualmente tenemos al "Coordinator Layout" como un elemento ancestro y sobre
+ello el "Tool Bar" cuando trabajamos, "Tabs" y navegación con este tipo de elementos,
+también va dentro del "APP Bar" va junto al "Tool Bar" y todo va, al antiguo "Action
+Bar" entonces es otro elemento de Material Design que tenemos que explorar, nos permite
+una personalización, bastante amplia, por ejemplo agregar imágenes, agregar texto,
+etcétera, podemos poner un "Layout" dentro del APP Bar, podemos manipular el "Tool Bar"
+y vale la pena explorar, desde el lado de diseño, como han cambiado las guías, hasta
+el lado de código de como implementamos esto en nuestra aplicación.
+
+Cuando platicamos del "Tool Bar" y el "App Bar" mencionábamos que los elementos de acción
+o los iconos de acción, como el menú, se encuentran en esta barra, el menú no es algo
+nuevo, pero ha cambiado en las diferentes versiones de Android, actualmente, pues tenemos
+un icono de navegación, que nos lleva al "navigation view" un título y tenemos iconos
+de acción y el icono del menú, ambos los vamos a trabajar como elementos del menú,
+para ello definimos los elementos dentro de un "xml" entonces vamos agregar un recursos
+dentro del folder del menú, y le ponemos algún nombre por ejemplo menú_ y la actividad
+en la que lo vamos a estar utilizando, y dentro de este archivo agregamos elementos usando
+el tag de "Items" y allí podemos especificar si queremos que se muestre como una acción,
+si hay espacio, nunca o siempre si tiene un icono asociado, si tiene un identificador
+asociado, es necesario para validar que acción vamos a realizar, etcétera, una vez que ya
+tenemos este archivo, entonces en la actividad tenemos que indicar que hay un menú, para
+ello sobrecargamos un método "onCreate options Menu" y en este método inflamos con un "Layout
+Inflater" el "xml" que definimos en el paso anterior, y usualmente devolvemos una llamada
+a su ancestro "Supr" ahora cuando el usuario selecciona algo, se manda a llamar otro método
+este método es "onOptionItemSelection" y sobre el vamos a tener un menú "Item" sobre
+este "Item" podemos obtener un identificador y comparar con los identificadores, que definimos
+en el archivo, donde describíamos el comportamiento del menú, en base a eso realizamos algún
+acción, por ejemplo cerrar sesión, cambiar de actividad o una búsqueda o lo que corresponda,
+pero lo hacemos bajo el concepto de menú, si queremos saber más información de esto,
+la documentación oficial de Android, también incluye una especificación, bastante completa
+del menú, así que este es, otro elemento más de "ui" que debemos conocer.
+
+
+
+## Clase1_8 Coordinator Layout
+
+Un elemento de Material Design tiene características bastante interesantes es el "Coordinator Layout"
+suena un poco obvio, pero lo que hace el "Coordinator Layout" es coordinar todo, es decir la interacciones
+que tienen los elementos hijos que están en la jerarquía bajo este elemento, en general
+esa coordinación puede realizarse en base a código que nosotros coloquemos, pero hay
+algunas cosas que ya coordina de caja, por ejemplo, va coordinar la forma en que interactúa
+un "Recycler View" con un "Tool Bar" cuando hay un Scroll, hay un efecto muy bonito que
+se llama "parallax" en el que un encabezado, cambia de tamaño o se oculta, en base al
+scroll del usuario, esto lo podemos lograr con el "Coordinator Layout" también maneja
+el anclaje del "Floating Action Button" y muestra los "SnackBars" a que me refiero con
+esto, no es que no pueda mostrar un "SnackBar" sino tengo un "Coordinator Layout" pero si
+lo tengo, los elementos hijos de este Layout, van a responder ante los eventos, digamos
+por ejemplo que tengo un "Floating Action Button" y que quiero mostrar un "SnackBar"
+lo que hace el "Coordinator Layout" dice, A ok, aquí está el botón y ahora vamos
+a poner un mensaje abajo, entonces movamos ligeramente el botón hacia arriba, para que
+no quede el mensaje por encima, es un detalle muy pequeño, pero es un detalle de usabilidad
+que resulta muy conveniente y que no tenemos que hacer nada para implementarlo, es parte
+de la funcionalidad que ya incluye el "Coordinator Layout" a partir de cómo está construido,
+entonces en base a esto, podemos elegir como trabajar todos los elementos, dentro de una
+pantalla de una actividad, teniendo "Coordinator Layout" como coordinador teniendo un "App"
+y dentro un "Tool Bar" y luego presentando el contenido, este contenido usualmente puede
+ir con un "Relative Layout" que ya me va permitir ordenar o bien con un "Linear Layout", si
+yo quisiera algún tipo de interacción avanzada entre los múltiples elementos, lo puedo implementar
+sin ningún problema con el "Coordinator Layout" así que además de conocer los elementos
+específicos, es necesario conocer como funciona el elemento que los coordina todos, y este
+es este "Layout" nuevo llamado "Coordinator Layout".
+
+
+## Clase1_9 Floating action button
+
+Otro elemento de "ui" que introdujo Material Design es el "Flouting Action Button" este
+es un botón que tiene una forma circular, y usualmente va en la esquina inferior derecha,
+la guía de especificación de Material Design nos da a conocer un poco sobre el tamaño
+que debería tener, la, el realce que debería tener, la sobre que debería tener y donde
+se ubica, hay una versión mini y una versión tradicional digamos, la versión mini, usualmente
+va en la parte superior junto a un encabezado la versión tradicional, pues va en la esquina
+superior derecha que comentaba, si tomamos esto como referencia la intensión, es que
+me permita ejecutar, una acción que sea común y que sea importante para mi App, no es un
+requisito, esto hay que tenerlo en mente, si mi App tiene muchas acciones o no hay una
+que sobresalga entre todas, entonces talvez no necesito un "Flouting Action Button" pero
+para citar algunos ejemplos, si tengo un listado y quiero agregar un elemento al listado, podría
+ser una buena opción, por ejemplo en un cliente de correo electrónico, ese botón, me permite
+escribir un evento nuevo, y si tengo un calendario, podría agregar un evento nuevo o un recordatorio,
+entonces es posible que al hacer click sobre este elemento o al presionarlo me muestre
+un segundo menú, sobre de que podría ser, la regla de esto, esta en la especificación
+de Materials Design entonces vale la pena ir a leerlo, para saber cuál es la forma
+correcta de implementarlo, los colores, el realce, etcétera, para agregarlo en nuestro
+proyecto, necesitamos la librería de diseño que incluye varios elementos y la vamos a
+agregar en "gradle" luego, especifico cual es el "Layout" del botón al igual que otros
+elementos, tienen nombres un poquito largo, que pertenece a un paquete de "widget" pero
+no tiene una característica que sea muy distinta de otros elementos, tiene que tener un ancho
+y un alto, le vamos a poder poner una ubicación usualmente esto lo hacemos con un anclaje,
+para indicarle en que parte se encuentra, y la funcionalidad me va permitir manejar
+un click al igual que lo manejo sobre otros elementos, lo puedo manejar con una clase
+anónima, o lo puedo manejar usando una librería como "ButterKnife" si queremos saber un poco
+más del botón del "Flouting Action Button" podriamos ver en la especificación de Documentación
+de Materials Design o en la documentación oficial de Android.
+
+
 
 
 # Lección 2:
