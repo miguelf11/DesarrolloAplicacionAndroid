@@ -793,7 +793,6 @@ Los casos de uso que vamos a tener durante el curso va ser únicamente, ir por l
 * [Recycler Aninado y CardView](#clase2_3-recycler-anidado-y-cardview)
 * [Swipe](#clase2_4-swipe)
 
-Clase2_3 Recycler anidado y CardView
 
 ## Clase2_1 Inyección de Dependencias
 
