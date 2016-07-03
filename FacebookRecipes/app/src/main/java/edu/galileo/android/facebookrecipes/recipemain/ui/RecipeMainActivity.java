@@ -1,7 +1,9 @@
-package edu.galileo.android.facebookrecipes;
+package edu.galileo.android.facebookrecipes.recipemain.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import edu.galileo.android.facebookrecipes.R;
 
 public class RecipeMainActivity extends AppCompatActivity {
 
