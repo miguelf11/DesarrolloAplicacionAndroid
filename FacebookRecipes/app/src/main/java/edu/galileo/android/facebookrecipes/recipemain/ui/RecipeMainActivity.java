@@ -24,12 +24,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.galileo.android.facebookrecipes.FacebookRecipesApp;
 import edu.galileo.android.facebookrecipes.R;
-import edu.galileo.android.facebookrecipes.RecipeListActivity;
+import edu.galileo.android.facebookrecipes.recipelist.ui.RecipeListActivity;
 import edu.galileo.android.facebookrecipes.entities.Recipe;
 import edu.galileo.android.facebookrecipes.libs.base.ImageLoader;
 import edu.galileo.android.facebookrecipes.recipemain.RecipeMainPresenter;
 import edu.galileo.android.facebookrecipes.recipemain.di.RecipeMainComponent;
-import edu.galileo.android.facebookrecipes.recipemain.events.RecipeMainEvent;
 
 public class RecipeMainActivity extends AppCompatActivity implements RecipeMainView, SwipeGestureListener {
 
