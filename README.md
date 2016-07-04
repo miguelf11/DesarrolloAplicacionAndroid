@@ -1072,3 +1072,181 @@ Entonces, cuando sucede un "fling" que lleva cierta dirección y estoy haciendo 
 
 # Lección 4
 
+## Tabla de contenidos
+
+* [Regresar al Inicio](#desarrolloaplicacionandroid)
+* [Código del Presentador]()
+* [Ubicación](#clase2_1-inyección-de-dependencias)
+* [ViewPager y tabs](#clase2_2-viewpager-y-tabs)
+* [Recycler Aninado y CardView](#clase2_3-recycler-anidado-y-cardview)
+* [Swipe](#clase2_4-swipe)
+
+
+## Clase4_1 Ubicación
+
+Vamos a ver como pedir la ubicación del usuario.Para esto necesitamos el GPS o la ubicación de parte de la red o la ubicación de parte de las antenas cuando tenemos un celular, que también obtiene de esa forma la ubicación, lo importante es que hay varias fuentes, pero para que sea más fácil, nos vamos a apoyar en una librería del Framework de Android, lo que ha venido haciendo Android desde hace un poco de tiempo es, tomando algunas funciones propias del sistema, y moverla hacia GooglePlayServices, que es esta librería que me permite hacer muchas cosas, entonces el APP se conecta a PlayServices, que está disponible en el PlayStore, y eventualmente PlayServices, funciona dentro de Android y me devuelve algún resultado. Entre lo que puedo usar es talvez la autenticación con GooglePlus, el control para el manejo de videojuegos, con una especie de Centro de Videojuegos, los mapas, la ubicación, el movimiento, van agregando poco a poco más cosas.
+
+Entonces nosotros vamos a empezar importando, o agregando más bien, la librería de GooglePlayServices a nuestro proyecto, ahora esto lo podemos hacer por completo, con toda la librería, o siendo selectivos con una porción, dependiendo de nuestro proyecto, que tantas librerías tenga, esto tiene sentido que hagamos uno u otro, la porción especifica del usuario para ubicarlo se llama Services Location y vamos a trabajar sobre ello.
+
+Para poder ubicar al usuario tenemos que indicar que va utilizar el permiso de acceso a la ubicación, puede ser un "COASE_LOCATION" o un "FINE_LOCATION" de acuerdo a como lo quiero ubicar, "FINE_LOCATION" va tener el GPS, usualmente eso es lo que nos interesa.
+
+Posteriormente a que definí eso, en el manifest, como permiso, voy a tener que conectarme a PlayServices, usualmente entonces instancio, un objeto GoogleAPIClient, sobre este APIClient, cuando tengo ciertos eventos, me conecto y me desconecto, por ejemplo en OnResume y onPost de la actividad, voy a conectarme y a desconectarme, específicamente para el caso de la ubicación, tengo un método que es parte de los CALLBACKS, podría ser que mi actividad implemente estos CALLBACK, y entonces voy a tener una llamada, cuando se obtuvo una ubicación y el cliente se conectó, allí tengo una garantía de que ya puedo llamar a la ubicación sobre el APIClient, entonces hago uso de este APIClient y obtengo la ubicación.
+
+Una alternativa, es que tenga actualizaciones, podría ser que la ubicación me interese en un solo momento, o podría ser que me interese en los cambios, con las actualizaciones cada vez que se modifica la ubicación del usuario, puedo programar la periodicidad de esas peticiones, pero cuando se modifica, voy a obtener una llamada, y entonces tengo un método a través del cual puedo actualizar la variable, en donde llevo control de la ubicación, puedo enviar al servidor, conservarla en el APP, etcétera, en realidad hay una variedad de cosas que puedo hacer con la ubicación, y eventualmente como esto va consumir mucha batería para el usuario, tengo que ser muy consiente de cómo lo administro, y cuando no lo estoy usando detener las ubicaciones, entonces tengo como un ciclo de vida, a través del cual hay varios eventos, el primero de ellos es la conexión, luego puedo pedir la ubicación, la última conocida, y pedir en el camino, actualizaciones, para el final, detener estas actualizaciones, hay mucha más información de esto, incluyendo estrategias para administrarlo, el código necesario para obtener la ubicación y de qué forma lo debería implementar, para configurarlo en la documentación oficial.
+
+
+## Clase4_2 Google maps, Markers, Info Window
+
+
+Hay varias formas de mostrar un mapa al usuario en una aplicación, pero creo que la mas común y más popular es GoogleMaps.
+
+El primer paso, es obtener un API KEY afortunadamente en el sitio oficial, tenemos una guía, para obtener este APIKEY, entonces:
+
+<ol>
+	<li>Simplemente le decimos, vamos a obtener un KEY</li>
+	<li>Esto nos lleva a una pantalla, donde dice, queremos usar una pantalla existente, de la consola de Proyectos de Google, o queremos hacer un proyecto nuevo </li>
+	<li>luego que ya fue creado esto, nos pide SHARE1, a partir de KEY STORE, similar como lo hace otros APIS, como por ejemplo FACEBOOK, además del nombre del paquete  </li>
+	<li>Después que le hayamos indicado ya disponemos del acceso para utilizar el mapa  </li>
+	<li>  </li>
+	<li>  </li>
+</ol>
+
+Simplemente le decimos, vamos a obtener un KEY, esto nos lleva a una pantalla, donde dice, queremos usar una pantalla existente, de la consola de Proyectos de Google, o queremos hacer un proyecto nuevo.
+
+Ese KEY, tiene que ir en el manifest, puedo ponerlo al igual que los casos anteriores en el archivo de propiedades de GRADLE, y leerlo en el Manifest.
+Aquí lo vamos a colocar con un, elemento de Metadata y una vez, lo tengo listo puedo proceder a la implementación.
+
+De nuevo, vamos a usar GooglePlay Services para esto, entonces voy a colocar la referencia ya sea general o únicamente para los mapas, siendo selectivos, voy a agregar los permisos y necesito un permiso de internet, necesito el permiso, de la ubicación y necesito el permiso de escritura hacia el almacenamiento, porque es posible que se maneje un cierto Caching o una copia local de los elementos del mapa.
+
+Luego en el Layout especifico, que voy a tener un "SupportMapFragment"y en la implementación voy a tener un CALLBACK que tiene un método onMapReady a través del cual voy a poder mostrar ese mapa.
+
+Esto es importante, porque la carga se hace de forma síncrona, entonces si tengo una conexión muy lenta la carga se va ser mientras pueda hacer algunas otras cosas dentro de la aplicación, por lo tanto en el método onCreate, y el método onActivityCreated o onCreateView, o en el que corresponda de acuerdo a la actividad o fragmento, voy a poder empezar esta carga de datos y también, esa misma actividad o fragmento va implementar la interfaz, para tener el CALLBACK cuando el mapa está listo, y sobre ese mapa, ya puedo trabajar.
+
+Luego además de que tengo un mapa, tengo <em>diferentes tipos de mapa</em>, donde tengo uno con satélite, voy a ver el terreno, voy a ver el mapa plano, hay un mapa por defecto, pero puedo agregar una funcionalidad adicional, incluso si el Zoom es muy alto, en algunos casos hay mapas, de cosas que son dentro de un edificio, cuando hay edificios grandes o de este tipo, entonces, usando OnMapReady, puedo colocar esto, y asignarle un Mapa Híbrido, un mapa satelital, etcétera, cuando ya dispongo de esa instancia del mapa, lo puedo hacer en otro momento, pero lo importante es que ya asigné la instancia inicialmente.
+
+Además de esto <em>los marcadores</em> me permiten tener un punto en el mapa, los marcadores tienen por lo menos, la posición, que es obligatorio, además vamos a tener opcional un título, un snippet, si se puede arrastrar o no, si es visible, un icono personalizado, etcétera, y estos marcadores los voy a obtener es decir el objeto Marker lo voy a obtener, luego de que sobre el mapa, llame un método que agregue el marcador con ciertas características y ciertos atributos que voy a especificar.
+
+Cada marcador, puede tener una ventana de información, entonces si le especifico un título y un snippet eso va aparecer en el momento de que le haga un click al marcador, esa ventana puede ser personalizado el contenido, es decir lo que va dentro o puede ser personalizado, el contenedor y el contenido, es decir, todo el marco y lo que va dentro, de acuerdo a esto, nosotros vamos a trabajar con un InfoWindow, personalizado para nuestra aplicación.
+
+Hay dos métodos importantes aquí:
+
+<ul>
+	<li>GetInfoContent</li>
+	<li>InfoWindows </li>
+
+</ul>
+
+De acuerdo a esto, voy a cambiar, ya sea la ventana completa o únicamente el contenido.
+
+A nosotros nos va interesar en nuestra aplicación cambiar solo el contenido, allí inflamos la vista, colocamos los atributos, algo a tener en cuenta es que lo que hace Maps o lo que hace Android para mostrarlo de una forma más eficiente es, todo eso que se recibe, se coloca como una imagen, entonces , el contenido y las diferentes vistas se procesan, y el OUTPUT, es una sola imagen que se muestra, lo que provoca lo que detectar clicks o un cambio o lo que sea, sobre esa vista, no sea tan fácil.
+
+Resumiendo un poco, vamos a necesitar para los mapas tener un APIKEY, vamos a colocar el APIKEY como metadata en el manifest, así como también, los permisos de:
+
+<ul>
+	<li> Ubicación  </li>
+	<li> Internet  </li>
+	<li> Escritura de almacenamiento </li>
+</ul>
+
+
+Luego la funcionalidad la vamos hacer con un MapFragment, es un elemento de UI, para Layout y además vamos a tener una clase, donde podemos hacer la carga del mapa en base a un CALLBACK, entonces en el evento onMapReady, vamos a tener lo necesario para acceder a ese elemento, luego esto puede tener un mapa, tipo hibrido, de tipo satelital, de tipo solo terreno, etcétera, lo hacemos sobre el objeto mapa, y sobre el mismo objeto mapa, podemos colocar también marcadores, estos marcadores, me van a permitir marcar un punto sobre el mapa, y al hacer click me puede mostrar contenido, lo va mostrar si yo especifico, que tenga por ejemplo un título, un snippet, o bien si especifico un infoWindow personalizado, puedo hacer click sobre el InfoWindow puedo tener una interacción muy simple, pero el contenido como tal no lo puedo acceder, porque se convierte una imagen.
+
+
+
+## Clase4_3 Cámara
+
+Vamos a platicar un poco de la cámara y cómo podemos utilizarla dentro de Android. Es importante tener en mente que hay dos caminos a elegir dentro de cómo lo implementa Android. Uno de ellos es a través de un "intent",El otro es personalizar por completo la cámara y tener mucho más control.
+
+En este caso no queremos agregar filtros, no queremos cambiar el comportamiento, entonces, vamos a trabajar con un "intent".
+
+El primer paso es considerar que tenemos que avisar que esta característica del teléfono va a ser usada, de acuerdo a eso vamos a indicar que queremos usar la cámara en el "manifest".
+
+Ahora, el tema es que necesito especificar el permiso de la cámara, y necesito especificar la característica de la cámara, porque es posible que algún dispositivo no la tenga, en base a esto puedo indicar que la aplicación va a ser uso de la cámara y que es fundamental o no.
+
+Cuando no sea fundamental agregamos sobre el "uses feature" dentro del "manifest" una propiedad android:required = "false" porque si no es un requerimiento, entonces la aplicación puede funcionar sin la cámara.
+
+Si fuera un requerimiento y dependemos totalmente de la cámara si es muy importante que se lo digamos al usuario para que no vaya a tener una experiencia mala, en un dispositivo que no tiene  cámara.
+
+Luego si vamos a guardar las imágenes también necesitamos indicar el permiso de que escriba al almacenamiento, en la mayoría de casos si tomamos una fotografía vamos a querer hacer algo con la fotografía y es altamente probable que la queramos guardar. Por eso es importante indicarlo.
+
+Luego, ya que tengo estas considerasiones previas contempladas voy a tener dos pasos que hacer.
+
+<ol>
+	<li>Iniciar el "intent" para que la cámara pueda tomar la fotografía,vamos a especificar algunos valores específicos para esto, indicándole cual es el "intent", toma de fotografía, que queremos que esto quede guardado en un archivo y luego le decimos "start activity for result" y va a inicializar en base a ese "intent" la cámara.
+  </li>
+	<li>Recibir el resultado y luego hacer algo con esa fotografía. </li>
+</ol>
+
+El segundo, recibir el resultado requiere de "on activity result", muy parecido a cuando iniciábamos sesión con Facebook o Twitter, la forma de manejarlo es que va a regresar algo a nuestra actividad que trae información, entonces, ahí puedo validar si el resultado es el adecuado, entonces, ejecutamos cierta acción. Además, como puedo tener múltiples llamadas de salida de la actividad y que más de alguna regrese con un "activity result" cuando construyo el "intent" de la cámara o algún otro "intent", necesito especificar un código y al regresar en "on activity result" validamos ese código para asegurarnos que sí sea la cámara.
+
+
+Con ello ya podemos guardar la imagen, podemos subirla a un "backend", podemos hacer una variedad de cosas. Ahora, es posible que entre esas cosas queramos agregar la fotografía como un elemento en la galería. A partir de las versiones más nuevas la galería desapareció y ahora se usa "Google Photos", podría ser alguna otra aplicación pero esa es la que Google nos sugiere y guarda una copia de seguridad en la Nube.
+
+Por lo tanto, es posible que esa copia de seguridad pueda venir como origen para una fotografía, o si es una versión antigua podría ser una galería. Ahora, agregarlo en Google Photos lo que vamos a hacer es el mismo paso con la galería pero lo que va a hacer es avisarle al usuario nada más: "hey, hay un folder nuevo, ¿lo quieres agregar al backup?".
+
+Por defecto únicamente la cámara está activada y también se puede deshabilitar si el usuario quiere. Entonces, como tiene un mayor control nosotros todo lo que hacemos es volver consciente al usuario de esto.
+
+Con el segundo punto que mencionaba, el origen es algo importante considerar porque si tenemos una fotografía que podemos tomar en ese momento, es muy probable que el usuario también quiera alguna fotografía que ya tomó antes, por lo tanto el origen podría ser la galería o podría ser "Google Photos" o podría ser un sinfín de "apps". 
+
+Para trabajar esto vamos a tomar en consideración algunas cosas adicionales, la primera es el archivo. El archivo lo podemos empaquetar en un método que nos lo devuelva porque vamos a trabajar únicamente con la ruta escribiéndole. Luego que eso ya lo empaquetamos y nos liberó un
+poco de carga, vamos a tomar en cuenta también que pueden haber múltiples origenes.
+
+Puedo colocar un diálogo en donde yo le doy elegir al usuario que hay por ejemplo, dos orígenes, la cámara y la galería, o la cámara y Google Photos, o puedo hacer un "chooser" de los "intents" a partir de lo que tiene el usuario disponible. De esta forma, si por ejemplo el usuario tiene la galería y Google Photos y la cámara, van a aparecer los tres. Si sólo tiene Google Photos va a aparecer sólo ese o si tiene Photos y la cámara esos dos.
+
+Entonces, lo que hacemos en un listado vamos agregando estos diferentes orígenes bajo la validación de qué actividades o aplicaciones pueden responder hacia cierto "intent". Luego, tenemos un método que vaya agregando estos "intents" a un listado y por último, creamos un "chooser" a partir de ese resultado.
+
+Luego, cuando regresa puedo validar si el "on activity result" trae datos el resultado, podemos recibir ahí un "intent" entre los parámetros, entonces, si este "intent" trae datos, podría en base a eso decidir si es una fotografía tomada de la cámara o si viene de otra fuente.
+
+También con un "broadcast" puedo avisarle al sistema de que la fotografía ha sido tomada y con esto lo agrego a la galería. Este "broadcast" lo voy a emitir únicamente cuando la fotografía está siendo tomada de la cámara, porque si viene de otro origen el sistema ya sabe que existe.
+
+Por último, si la imagen <em>NO viene de la cámara</em> puede venir de la galería de fotos o de alguna otra fuente y tal vez lo más difícil es que si es de Google Photos va a venir ya sea local o remota. Si está local ningún problema, puedo leer el archivo. Pero si está remoto voy a usar un "content provider" para hacer esta petición que me devuelva un "string" de "bytes", que es el que voy a utilizar para construir el resultado. 
+
+Entonces, al final del día lo que necesito para manipular la imagen es un "URI" y una ruta. Esto lo puedo obtener a partir de varias formas, entonces si la imagen viene de una aplicación local voy a tener que hacer un poquito de manipulación adicional.
+
+Si tiene que ser descargada pues  con una palabra que viene en el "URI", que es el "media key", de cualquier forma lo puedo solucionar y puedo obtener ese URI y luego hacer algo con esa imagen.
+
+ En nuestra aplicación lo que vamos a hacer es publicarla hacia nuestro "backend" y mostrarla en un listado de imágenes. Pero podríamos hacer mucho más, ponerle filtros, compartirla, como nos resulte conveniente. Lo importante es que se puede manejar de varias formas.
+
+ Así que haciendo un resumen, la cámara la puedo manejar de forma manual o la puedo manejar con un "intent". Nosotros vamos a usar un "intent" que en la mayoría de casos es una solución que nos funciona, cuando no queremos mucha personalización. Luego, además de la cámara, con dos pasos a ejecutar voy a tener, uno, levantar el intent; y dos, hacer algo con el resultado, pero es posible que también venga de la galería o de Google Photos. De acuerdo a eso vamos a agregar "intents" a un "intent" que elige. Entonces, no me preocupo yo por hacer un diálogo sino lo hace el mismo sistema de acuerdo a lo que tiene instalado y cuando regresamos y la fotografía no fue tomada por la cámara sino viene de otro lugar, puede ser que esté local o que esté remota, si está local no hay tanto problema, lo podemos obtener de un cursor, pero si está remoto tengo que obtenerlo con un "control resolver", y de esa manera voy a administrar las fotografías de diferentes fuentes para que el usuario las pueda compartir con mi aplicación y ya decido yo que hago pero lo importante es el usuario tiene todas las opciones disponibles.
+
+
+## Clase4_4 Cloudinary - App de la semana
+
+Para la aplicación de esta semana, lo que vamos a hacer es un Feed de fotos social, en el que todos vamos a poder compartir y ver el resultado de estas fotografías.
+
+Por lo mismo, necesitamos identificarnos. Lo vamos a hacer con un email y una contraseña, de nuevo usando Firebase como en la aplicación del chat.
+
+Posterior al "login", vamos a mostrar dos "tabs". En uno de ellos, lo que vamos a ver es un listado con un "recyclerview" de todas las fotografías compartidas. Si la fotografía la compartí yo, va a tener un icono de Eliminar, pero todas van a tener un icono de Compartir.
+
+Esto va a ser uso del compartir de Android, un "intent" que de acuerdo al contenido, una imagen en este caso, vaa usar las "apps" que tiene el usuario instaladas, para poder compartir.
+
+Además de eso, en la parte superior de cada fotografía, vamos a tener una foto pequeña del usuario, similar al chat, nos vamos a apoyar en "Gravatar" para irlo a conseguir a partir del email y vamos a tener el email mostrándose.
+
+Luego, en la siguiente pestaña, vamos a tener un mapa en donde va a ver un marcador por cada una de las fotografías que hemos tomado. Y al hacer click sobre este marcador, se va a poder visualizar una vista similar a la del listado, sin los iconos de Borrar y Compartir, únicamente qué usuario lo compartió y la fotografía.
+
+En las dos pantallas vamos a tener un "floating action button" que me va a permitir tomar una fotografía nueva y poderla compartir.
+
+
+Compartir la fotografía implica que tenemos que guardarla en algún lugar. Guardar imágenes en Firebase en este momento no es una buena idea porque Firebase guarda texto. Entonces, podríamos guardarla en Base
+64, pero no es la mejor opción.
+
+Para ello entonces, vamos a usar un "back end" que nos apoye únicamente en almacenar las imágenes y va a estar funcionando en conjunto con Firebase.
+
+Entonces, Firebase va a manejar la autenticación y va a manejar también las imágenes pero únicamente un listado. Y en este otro "back end", vamos a tener la imágen como tal, guardada.
+
+Ese otro "back end" va a ser "Cloudinary". Hay varias opciones, podríamos hacer un "backend" propio, podríamos usar "Google Cloud", algún otro "provider" de la nube, pero "Cloudinary" es como una especie de Firebase únicamente para imágenes.Entonces, no es que sea a tiempo real, pero me permite guardar las imágenes de una forma muy sencilla.
+
+Para ello, tenemosun "dashboard", en este "dashboard" nos muestra el "key". El "key" de "Cloudinary" lo tenemos que agregar en nuestra "app" y luego ya podemos ver transformaciones, hacer cualquier cantidad de cosas sobre las imágenes, que en nuestro caso no va a ser necesario.
+
+Entonces, para trabajar con "Cloudinary", lo agregamos también en el archivo de "gradle" y vamos a especificar que lea el "Cloudinary URL" del archivo propiedades, similar a como se leía el "key" del mapa. Entonces, aquí estamos poniendo lo que no queremos que esté en control de
+versiones.
+
+Luego, esa variable "Cloudinary URL" la vamos a colocar en el meta-data del "manifest" para que la aplicación lo reconozca.
+
+La funcionalidad lo que va a requerir, son dos cosas; un método "upload" que recibe el archivo y un identificador que vamos a indicarle y un método "get_URL" que a partir de ese identificador, me da la "URL" de la imágen, que está obviamente en el dominio de "Cloudinary". El indicador nos lo va a proveer Firebase. "Cloudinary"lo podría proveer, pero lo más fácil es sincronizarlos.
+
+Entonces vamos a utilizar el método "push" de Firebase y lo vamos a asociar a la imagen. Entonces, además de eso, agregar este método "upload" dentro de un "thread".
+
+una "sintask" que nos permita hacer la publicación.
+
+Por último, necesitamos saber cuál es el modelo de datos dentro de Firebase. Lo que vamos a guardar es un identificador, ese va a ser el "key" generado por Firebase en base a la fecha y la hora , y dentro de cada elemento, vamos a guardar el correo electrónico del usuario que lo está compartiendo, la ubicación con latitud y longitud, es decir, son dos campos y el "URL" de "Cloudinary" y además en "Cloudinary", vamos a usar este identificador de Firebase para guardar las imágenes.
