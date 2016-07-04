@@ -9,5 +9,6 @@
     <string name="recipelist.menu.action.main">Elegir recetas</string>
 
     <string name="menu.action.logout">Cerrar sesión</string>
+    <string name="recipemain.menu.action.main">Elegir receta</string>
 
 </resources>
