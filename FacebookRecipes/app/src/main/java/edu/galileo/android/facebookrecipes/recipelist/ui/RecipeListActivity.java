@@ -19,6 +19,7 @@ import edu.galileo.android.facebookrecipes.FacebookRecipesApp;
 import edu.galileo.android.facebookrecipes.R;
 import edu.galileo.android.facebookrecipes.entities.Recipe;
 import edu.galileo.android.facebookrecipes.recipelist.RecipeListPresenter;
+import edu.galileo.android.facebookrecipes.recipelist.di.RecipeListComponent;
 import edu.galileo.android.facebookrecipes.recipelist.ui.adapters.OnItemClickListener;
 import edu.galileo.android.facebookrecipes.recipelist.ui.adapters.RecipesAdapter;
 import edu.galileo.android.facebookrecipes.recipemain.ui.RecipeMainActivity;
@@ -30,8 +31,9 @@ public class RecipeListActivity extends AppCompatActivity implements RecipeListV
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    RecipesAdapter adapter;
-    RecipeListPresenter presenter;
+    private RecipesAdapter adapter;
+    private RecipeListPresenter presenter;
+    private RecipeListComponent component;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +80,10 @@ public class RecipeListActivity extends AppCompatActivity implements RecipeListV
     }
 
     private void setupInjection() {
+        FacebookRecipesApp app = (FacebookRecipesApp) getApplication();
+        component = app.getRecipeListComponent(this,this,this);
+        presenter = getPresenter();
+        adapter = getAdapter();
 
     }
 
@@ -124,5 +130,13 @@ public class RecipeListActivity extends AppCompatActivity implements RecipeListV
     @Override
     public void onDeleteClick(Recipe recipe) {
         presenter.removeRecipes(recipe);
+    }
+
+    public RecipeListPresenter getPresenter() {
+        return component.getPresenter();
+    }
+
+    public RecipesAdapter getAdapter() {
+        return component.getAdapter();
     }
 }

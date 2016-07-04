@@ -17,6 +17,12 @@ public class RecipeListPresenterImpl implements RecipeListPresenter {
     private RecipeListInteractor listInteractor;
     private StoredRecipesInteractor storedInteractor;
 
+    public RecipeListPresenterImpl(EventBus eventBus, RecipeListView view, RecipeListInteractor listInteractor, StoredRecipesInteractor storedInteractor) {
+        this.eventBus = eventBus;
+        this.view = view;
+        this.listInteractor = listInteractor;
+        this.storedInteractor = storedInteractor;
+    }
 
     @Override
     public void onCreate() {

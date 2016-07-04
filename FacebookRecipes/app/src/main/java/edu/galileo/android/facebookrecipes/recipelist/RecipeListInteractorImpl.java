@@ -13,40 +13,16 @@ import edu.galileo.android.facebookrecipes.recipelist.events.RecipeListEvent;
 /**
  * Created by Miguel on 04-07-2016.
  */
-public class RecipeListInteractorImpl implements RecipeListRepository{
+public class RecipeListInteractorImpl implements RecipeListInteractor{
 
-    private EventBus eventBus;
+    private RecipeListRepository repository;
 
-    @Override
-    public void getSavedRecipes() {
-        FlowCursorList<Recipe> storedRecipes = new FlowCursorList<Recipe>(false,Recipe.class);
-        post(RecipeListEvent.READ_EVENT,storedRecipes.getAll());
-        storedRecipes.close();
+    public RecipeListInteractorImpl(RecipeListRepository repository) {
+        this.repository = repository;
     }
 
     @Override
-    public void updateRecipe(Recipe recipe) {
-        recipe.update();
-        post();
+    public void execute() {
+        repository.getSavedRecipes();
     }
-
-    @Override
-    public void removeRecipe(Recipe recipe) {
-        recipe.delete();
-        post(RecipeListEvent.DELETE_EVENT, Arrays.asList(recipe));
-    }
-
-    private void post(int type,List<Recipe> recipeList){
-        RecipeListEvent event = new RecipeListEvent();
-        event.setType(type);
-        event.setRecipeList(recipeList);
-        eventBus.post(event);
-    }
-
-    private void post(){
-        post(RecipeListEvent.UPDATE_EVENT,null);
-
-    }
-
-
 }
