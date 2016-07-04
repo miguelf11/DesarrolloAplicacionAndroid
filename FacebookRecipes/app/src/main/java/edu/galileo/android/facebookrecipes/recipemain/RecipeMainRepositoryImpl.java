@@ -22,8 +22,7 @@ public class RecipeMainRepositoryImpl implements RecipeMainRepository {
     private EventBus eventBus;
     private RecipeService service;
 
-    public RecipeMainRepositoryImpl(int recipePage, EventBus eventBus, RecipeService service) {
-        this.recipePage = recipePage;
+    public RecipeMainRepositoryImpl(EventBus eventBus, RecipeService service) {
         this.eventBus = eventBus;
         this.service = service;
     }

@@ -7,11 +7,18 @@ import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
+import edu.galileo.android.facebookrecipes.libs.di.LibsModule;
 import edu.galileo.android.facebookrecipes.login.ui.LoginActivity;
+import edu.galileo.android.facebookrecipes.recipemain.di.DaggerRecipeMainComponent;
+import edu.galileo.android.facebookrecipes.recipemain.di.RecipeMainComponent;
+import edu.galileo.android.facebookrecipes.recipemain.di.RecipeMainModule;
+import edu.galileo.android.facebookrecipes.recipemain.ui.RecipeMainActivity;
+import edu.galileo.android.facebookrecipes.recipemain.ui.RecipeMainView;
 
 /**
  * Created by Miguel on 27-06-2016.
  */
+
 public class FacebookRecipesApp extends Application {
 
     @Override
@@ -37,6 +44,15 @@ public class FacebookRecipesApp extends Application {
 
     private void initFacebook() {
         FacebookSdk.sdkInitialize(this);
+    }
+
+    public RecipeMainComponent getRecipeMainComponent(RecipeMainActivity activity,
+                                                      RecipeMainView view){
+        return DaggerRecipeMainComponent
+                .builder()
+                .libsModule(new LibsModule(activity))
+                .recipeMainModule(new RecipeMainModule(view))
+                .build();
     }
 
     public void logout() {
