@@ -1,4 +1,4 @@
-package edu.galileo.android.facebookrecipes.recipelist.adapters;
+package edu.galileo.android.facebookrecipes.recipelist.ui.adapters;
 
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;

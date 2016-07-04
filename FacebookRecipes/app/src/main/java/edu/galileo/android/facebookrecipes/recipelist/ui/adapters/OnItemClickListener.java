@@ -1,4 +1,4 @@
-package edu.galileo.android.facebookrecipes.recipelist.adapters;
+package edu.galileo.android.facebookrecipes.recipelist.ui.adapters;
 
 import edu.galileo.android.facebookrecipes.entities.Recipe;
 
